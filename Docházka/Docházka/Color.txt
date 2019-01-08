@@ -1,0 +1,5 @@
+#FFFFFF = Bílá
+#D7DADB = šedá
+#6DBCDB = Modra
+#FC4349 = èervená
+#202D44 = tmavì modrá
