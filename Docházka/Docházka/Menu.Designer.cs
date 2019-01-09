@@ -28,56 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.label1 = new System.Windows.Forms.Label();
-            this.zavrit = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Možnosti = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
-            this.label1.Location = new System.Drawing.Point(-3, -3);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(805, 26);
+            this.label1.Size = new System.Drawing.Size(816, 26);
             this.label1.TabIndex = 1;
             // 
-            // zavrit
+            // Možnosti
             // 
-            this.zavrit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(188)))), ((int)(((byte)(219)))));
-            this.zavrit.Cursor = System.Windows.Forms.Cursors.Default;
-            this.zavrit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zavrit.Location = new System.Drawing.Point(773, -1);
-            this.zavrit.Name = "zavrit";
-            this.zavrit.Size = new System.Drawing.Size(28, 23);
-            this.zavrit.TabIndex = 2;
-            this.zavrit.Text = "X";
-            this.zavrit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.zavrit.Click += new System.EventHandler(this.zavrit_Click);
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(188)))), ((int)(((byte)(219)))));
-            this.label2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(741, -1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 23);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "_";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Možnosti.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
+            this.Možnosti.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Možnosti.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Možnosti.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Možnosti.Location = new System.Drawing.Point(5, 3);
+            this.Možnosti.Name = "Možnosti";
+            this.Možnosti.Size = new System.Drawing.Size(79, 20);
+            this.Možnosti.TabIndex = 2;
+            this.Možnosti.Text = "Nastavení";
+            this.Možnosti.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Možnosti.Click += new System.EventHandler(this.Možnosti_Click);
+            this.Možnosti.MouseEnter += new System.EventHandler(this.Možnosti_MouseEnter);
+            this.Možnosti.MouseLeave += new System.EventHandler(this.Možnosti_MouseLeave);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.zavrit);
+            this.ClientSize = new System.Drawing.Size(816, 450);
+            this.Controls.Add(this.Možnosti);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Menu";
-            this.Text = "Docházka";
+            this.Text = "DIMOS | Docházka - menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
 
@@ -86,8 +78,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label zavrit;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Možnosti;
     }
 }
 

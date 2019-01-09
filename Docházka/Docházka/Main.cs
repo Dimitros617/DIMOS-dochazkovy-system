@@ -21,5 +21,22 @@ namespace Docházka
         {
 
         }
+
+        private void Seznam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Seznam_MouseEnter(object sender, EventArgs e)
+        {
+            Seznam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+
+        }
+
+        private void Seznam_MouseLeave(object sender, EventArgs e)
+        {
+            Seznam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+
+        }
     }
 }

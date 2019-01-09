@@ -15,6 +15,8 @@ namespace Docházka
         public Menu()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.MaximizeBox = true;
         }
 
         private void Menu_Load(object sender, EventArgs e)
@@ -30,5 +32,24 @@ namespace Docházka
                 this.Close();
             }
         }
+
+        private void Možnosti_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Možnosti_MouseEnter(object sender, EventArgs e)
+        {
+            Možnosti.BackColor = System.Drawing.Color.White;
+
+        }
+
+        private void Možnosti_MouseLeave(object sender, EventArgs e)
+        {
+            Možnosti.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
+
+        }
+
+
     }
 }
