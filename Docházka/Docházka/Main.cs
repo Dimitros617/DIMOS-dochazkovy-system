@@ -18,20 +18,23 @@ namespace Docházka
         private String[] dnyEn = new String[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         private String[] dnyCz = new String[7] { "PONDĚLÍ", "ÚTERÝ", "STŘEDA", "ČTVRTEK", "PÁTEK", "SOBOTA", "NEDĚLE" };
 
-        public List<Ucitel> ucitele;
+        public List<Osoba> Osoby;
         public OsobniTabulka UniversalniTabulka;
 
         public Main()
         {
             InitializeComponent();
             UniversalniTabulka = new OsobniTabulka();
+            Osoby = new List<Osoba>();
             UniversalniTabulka.Reset();
 
         }
 
         private void pridat_Click(object sender, EventArgs e)
         {
-            Editace_osob pridat = new Editace_osob("NEW");
+            Osoba o = new Osoba();
+            Osoby.Add(o);
+            Editace_osob pridat = new Editace_osob("NEW", o);
             pridat.ShowDialog();
         }
         private void nastaveni_MouseEnter(object sender, EventArgs e)
@@ -84,7 +87,8 @@ namespace Docházka
 
         private void Seznam_Click(object sender, EventArgs e)
         {
-
+            Seznam seznam = new Seznam(this);
+            seznam.ShowDialog();
         }
 
         private void Seznam_MouseEnter(object sender, EventArgs e)
@@ -96,6 +100,28 @@ namespace Docházka
         private void Seznam_MouseLeave(object sender, EventArgs e)
         {
             Seznam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+
+        }
+
+        private void Seznam_MouseEnter_1(object sender, EventArgs e)
+        {
+            this.Seznam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+        }
+
+        private void Seznam_MouseLeave_1(object sender, EventArgs e)
+        {
+            this.Seznam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+
+        }
+
+        private void Karty_MouseEnter(object sender, EventArgs e)
+        {
+            this.Karty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+        }
+
+        private void Karty_MouseLeave(object sender, EventArgs e)
+        {
+            this.Karty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
 
         }
     }

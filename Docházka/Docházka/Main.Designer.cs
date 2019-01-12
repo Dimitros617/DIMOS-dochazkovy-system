@@ -35,7 +35,7 @@
             this.cas = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Karty = new System.Windows.Forms.Button();
             this.labelCopiright = new System.Windows.Forms.Label();
             this.SvatekLabel = new System.Windows.Forms.Label();
             this.jmeno = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             // 
             this.Seznam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Seznam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.Seznam.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Seznam.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
             this.Seznam.ForeColor = System.Drawing.Color.White;
             this.Seznam.Location = new System.Drawing.Point(44, 324);
@@ -59,6 +60,8 @@
             this.Seznam.Text = "Seznam";
             this.Seznam.UseVisualStyleBackColor = false;
             this.Seznam.Click += new System.EventHandler(this.Seznam_Click);
+            this.Seznam.MouseEnter += new System.EventHandler(this.Seznam_MouseEnter_1);
+            this.Seznam.MouseLeave += new System.EventHandler(this.Seznam_MouseLeave_1);
             // 
             // den
             // 
@@ -129,19 +132,22 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // Karty
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(278, 324);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 94);
-            this.button1.TabIndex = 15;
-            this.button1.TabStop = false;
-            this.button1.Text = "Karty";
-            this.button1.UseVisualStyleBackColor = false;
+            this.Karty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Karty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.Karty.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Karty.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.Karty.ForeColor = System.Drawing.Color.White;
+            this.Karty.Location = new System.Drawing.Point(278, 324);
+            this.Karty.Name = "Karty";
+            this.Karty.Size = new System.Drawing.Size(194, 94);
+            this.Karty.TabIndex = 15;
+            this.Karty.TabStop = false;
+            this.Karty.Text = "Karty";
+            this.Karty.UseVisualStyleBackColor = false;
+            this.Karty.MouseEnter += new System.EventHandler(this.Karty_MouseEnter);
+            this.Karty.MouseLeave += new System.EventHandler(this.Karty_MouseLeave);
             // 
             // labelCopiright
             // 
@@ -238,7 +244,7 @@
             this.Controls.Add(this.jmeno);
             this.Controls.Add(this.SvatekLabel);
             this.Controls.Add(this.labelCopiright);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Karty);
             this.Controls.Add(this.Seznam);
             this.Controls.Add(this.den);
             this.Controls.Add(this.datum);
@@ -265,7 +271,7 @@
         private System.Windows.Forms.Label cas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Karty;
         private System.Windows.Forms.Label labelCopiright;
         private System.Windows.Forms.Label SvatekLabel;
         private System.Windows.Forms.Label jmeno;

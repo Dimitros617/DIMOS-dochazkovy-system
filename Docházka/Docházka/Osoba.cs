@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Docházka
 {
-    public class Ucitel
+    public class Osoba
     {
         public List<List<String>> dochazka;
         public String jmeno;
@@ -14,10 +14,11 @@ namespace Docházka
         public String osobnicislo;
         public OsobniTabulka osobniTabulka;
 
-        public Ucitel(){
+        public Osoba(){
 
             dochazka = new List<List<string>>();
             osobniTabulka = new OsobniTabulka();
+            osobniTabulka.Reset();
         }
 
     }

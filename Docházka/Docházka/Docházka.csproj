@@ -52,7 +52,7 @@
       <DependentUpon>Editace_osob.cs</DependentUpon>
     </Compile>
     <Compile Include="OsobniTabulka.cs" />
-    <Compile Include="Ucitel.cs" />
+    <Compile Include="Osoba.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +61,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seznam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seznam.Designer.cs">
+      <DependentUpon>Seznam.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Editace_osob.resx">
       <DependentUpon>Editace_osob.cs</DependentUpon>
     </EmbeddedResource>
@@ -77,6 +83,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Seznam.resx">
+      <DependentUpon>Seznam.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
