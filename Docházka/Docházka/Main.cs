@@ -15,6 +15,7 @@ namespace Docházka
         private String[] dnyCz = new String[7] { "PONDĚLÍ", "ÚTERÝ", "STŘEDA", "ČTVRTEK", "PÁTEK", "SOBOTA", "NEDĚLE" };
 
         public List<Osoba> Osoby;
+        public List<Karta> poleKaret;
         public OsobniTabulka UniversalniTabulka;
 
         public Main()
@@ -22,6 +23,7 @@ namespace Docházka
             InitializeComponent();
             UniversalniTabulka = new OsobniTabulka();
             Osoby = new List<Osoba>();
+            poleKaret = new List<Karta>();
             UniversalniTabulka.Reset();
         }
 
@@ -129,6 +131,12 @@ namespace Docházka
         {
             this.Karty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
 
+        }
+
+        private void Karty_Click(object sender, EventArgs e)
+        {
+            Karty k = new Karty(this);
+            k.ShowDialog();
         }
     }
 }

@@ -251,9 +251,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Docházka.Properties.Resources.DIMOS_LOGO_Transparent_40_procent;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 245);
+            this.pictureBox1.Location = new System.Drawing.Point(33, 223);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(277, 217);
+            this.pictureBox1.Size = new System.Drawing.Size(277, 239);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;

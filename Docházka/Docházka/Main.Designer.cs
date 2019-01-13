@@ -35,7 +35,6 @@
             this.datum = new System.Windows.Forms.Label();
             this.cas = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Karty = new System.Windows.Forms.Button();
             this.labelCopiright = new System.Windows.Forms.Label();
             this.SvatekLabel = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.pridat = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,16 +125,6 @@
             this.label2.Text = "Vítejte";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Docházka.Properties.Resources.DIMOS_LOGO_Text_Transparent1;
-            this.pictureBox1.Location = new System.Drawing.Point(36, 65);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(436, 138);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
             // Karty
             // 
             this.Karty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -149,6 +139,7 @@
             this.Karty.TabStop = false;
             this.Karty.Text = "Karty";
             this.Karty.UseVisualStyleBackColor = false;
+            this.Karty.Click += new System.EventHandler(this.Karty_Click);
             this.Karty.MouseEnter += new System.EventHandler(this.Karty_MouseEnter);
             this.Karty.MouseLeave += new System.EventHandler(this.Karty_MouseLeave);
             // 
@@ -235,6 +226,16 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(900, 26);
             this.label1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Docházka.Properties.Resources.DIMOS_LOGO_Text_Transparent1;
+            this.pictureBox1.Location = new System.Drawing.Point(36, 65);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(436, 138);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
             // Main
             // 

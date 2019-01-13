@@ -56,7 +56,6 @@ namespace Docházka
                     addFromOsobyToTable(i);
                 }
             }
-
         }
 
         /**
@@ -99,9 +98,6 @@ namespace Docházka
             table.Controls.Add(new Label() { Margin = new Padding(5, 9, 0, 0), Text = "" + (i+1) + ".", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 0, i);
             //--- Vykreslení Jména
             table.Controls.Add(new Label() { Margin = new Padding(10, 9, 0, 0), Text = main.Osoby[i].jmeno + " " + main.Osoby[i].prijmeni, AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 1, i);
-
-
-
         }
 
         /**
@@ -113,7 +109,6 @@ namespace Docházka
             int index = ((Button)sender).TabIndex;
             new Editace_osob("EDIT", main.Osoby[index],this).ShowDialog();
             table.GetControlFromPosition(1, index).Text = main.Osoby[index].jmeno + " " + main.Osoby[index].prijmeni;
-
         }
 
         /**
@@ -123,7 +118,6 @@ namespace Docházka
         {
             int index = ((Button)sender).TabIndex;
             //TODO ------------------------------------------------------------------------------ TODO
-
         }
         
         /**
@@ -141,8 +135,6 @@ namespace Docházka
                 table.Controls.Clear();
                 vykresliTabulku();
             }
-            
-
         }
 
         /**
@@ -185,7 +177,6 @@ namespace Docházka
             pridat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
 
         }
-
 
         /**
          * 
