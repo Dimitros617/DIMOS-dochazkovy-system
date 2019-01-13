@@ -77,25 +77,27 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(854, 26);
+            this.label1.Size = new System.Drawing.Size(764, 26);
             this.label1.TabIndex = 4;
             // 
             // table
             // 
             this.table.AutoScroll = true;
-            this.table.ColumnCount = 4;
+            this.table.BackColor = System.Drawing.Color.Transparent;
+            this.table.ColumnCount = 5;
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.table.Location = new System.Drawing.Point(0, 26);
             this.table.Margin = new System.Windows.Forms.Padding(3, 300, 3, 3);
             this.table.Name = "table";
-            this.table.Padding = new System.Windows.Forms.Padding(0, 70, 0, 0);
+            this.table.Padding = new System.Windows.Forms.Padding(20, 70, 20, 0);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(854, 424);
+            this.table.Size = new System.Drawing.Size(764, 635);
             this.table.TabIndex = 7;
             this.table.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.table_CellPaint);
             // 
@@ -140,8 +142,8 @@
             this.AcceptButton = this.buttonHledat;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(854, 450);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(764, 661);
             this.Controls.Add(this.labelZadneVysledkyHledani);
             this.Controls.Add(this.buttonHledat);
             this.Controls.Add(this.textBoxHledat);
@@ -150,7 +152,7 @@
             this.Controls.Add(this.pridat);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(870, 489);
+            this.MinimumSize = new System.Drawing.Size(780, 500);
             this.Name = "Seznam";
             this.Text = "DIMOS | Docházka - Seznam osob";
             this.Load += new System.EventHandler(this.Seznam_Load);

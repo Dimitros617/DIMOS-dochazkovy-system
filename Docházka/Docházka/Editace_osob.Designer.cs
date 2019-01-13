@@ -43,12 +43,12 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonPridatRadek = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.labelMaska = new System.Windows.Forms.Label();
             this.buttonUlozit = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.tabulka.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -125,13 +125,15 @@
             // 
             this.tabulka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tabulka.AutoScroll = true;
-            this.tabulka.BackColor = System.Drawing.Color.White;
-            this.tabulka.ColumnCount = 5;
+            this.tabulka.BackColor = System.Drawing.Color.Transparent;
+            this.tabulka.ColumnCount = 6;
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tabulka.Controls.Add(this.textBox6, 0, 0);
             this.tabulka.Controls.Add(this.textBox1, 0, 0);
             this.tabulka.Controls.Add(this.textBox2, 1, 0);
             this.tabulka.Controls.Add(this.textBox3, 2, 0);
@@ -139,10 +141,12 @@
             this.tabulka.Controls.Add(this.textBox4, 3, 0);
             this.tabulka.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.tabulka.Location = new System.Drawing.Point(383, 61);
+            this.tabulka.MaximumSize = new System.Drawing.Size(463, 401);
+            this.tabulka.MinimumSize = new System.Drawing.Size(463, 401);
             this.tabulka.Name = "tabulka";
             this.tabulka.RowCount = 1;
             this.tabulka.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 401F));
-            this.tabulka.Size = new System.Drawing.Size(405, 401);
+            this.tabulka.Size = new System.Drawing.Size(463, 401);
             this.tabulka.TabIndex = 7;
             // 
             // textBox1
@@ -157,7 +161,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(78, 3);
+            this.textBox2.Location = new System.Drawing.Point(153, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(69, 20);
             this.textBox2.TabIndex = 0;
@@ -165,7 +169,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(153, 3);
+            this.textBox3.Location = new System.Drawing.Point(228, 3);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(69, 20);
             this.textBox3.TabIndex = 0;
@@ -173,7 +177,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(303, 3);
+            this.textBox5.Location = new System.Drawing.Point(378, 3);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(69, 20);
             this.textBox5.TabIndex = 0;
@@ -181,21 +185,11 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(228, 3);
+            this.textBox4.Location = new System.Drawing.Point(303, 3);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(69, 20);
             this.textBox4.TabIndex = 0;
             this.textBox4.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Docházka.Properties.Resources.DIMOS_LOGO_Transparent_75_percent;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 245);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(277, 217);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
             // 
             // buttonPridatRadek
             // 
@@ -204,7 +198,7 @@
             this.buttonPridatRadek.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonPridatRadek.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonPridatRadek.ForeColor = System.Drawing.Color.White;
-            this.buttonPridatRadek.Location = new System.Drawing.Point(614, 23);
+            this.buttonPridatRadek.Location = new System.Drawing.Point(672, 23);
             this.buttonPridatRadek.Name = "buttonPridatRadek";
             this.buttonPridatRadek.Size = new System.Drawing.Size(142, 32);
             this.buttonPridatRadek.TabIndex = 16;
@@ -223,7 +217,7 @@
             this.buttonReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonReset.ForeColor = System.Drawing.Color.White;
-            this.buttonReset.Location = new System.Drawing.Point(525, 23);
+            this.buttonReset.Location = new System.Drawing.Point(583, 23);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(86, 32);
             this.buttonReset.TabIndex = 17;
@@ -235,13 +229,6 @@
             this.buttonReset.MouseEnter += new System.EventHandler(this.buttonReset_MouseEnter);
             this.buttonReset.MouseLeave += new System.EventHandler(this.buttonReset_MouseLeave);
             // 
-            // labelMaska
-            // 
-            this.labelMaska.Location = new System.Drawing.Point(353, 9);
-            this.labelMaska.Name = "labelMaska";
-            this.labelMaska.Size = new System.Drawing.Size(446, 14);
-            this.labelMaska.TabIndex = 18;
-            // 
             // buttonUlozit
             // 
             this.buttonUlozit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -249,7 +236,7 @@
             this.buttonUlozit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonUlozit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonUlozit.ForeColor = System.Drawing.Color.White;
-            this.buttonUlozit.Location = new System.Drawing.Point(646, 470);
+            this.buttonUlozit.Location = new System.Drawing.Point(704, 470);
             this.buttonUlozit.Name = "buttonUlozit";
             this.buttonUlozit.Size = new System.Drawing.Size(142, 32);
             this.buttonUlozit.TabIndex = 19;
@@ -261,13 +248,31 @@
             this.buttonUlozit.MouseEnter += new System.EventHandler(this.buttonUlozit_MouseEnter);
             this.buttonUlozit.MouseLeave += new System.EventHandler(this.buttonUlozit_MouseLeave);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Docházka.Properties.Resources.DIMOS_LOGO_Transparent_40_procent;
+            this.pictureBox1.Location = new System.Drawing.Point(33, 245);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(277, 217);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(78, 3);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(69, 20);
+            this.textBox6.TabIndex = 1;
+            this.textBox6.Visible = false;
+            // 
             // Editace_osob
             // 
             this.AcceptButton = this.buttonUlozit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 510);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(858, 510);
             this.Controls.Add(this.buttonUlozit);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonPridatRadek);
@@ -279,10 +284,11 @@
             this.Controls.Add(this.labelPrijmeni);
             this.Controls.Add(this.textBoxJmeno);
             this.Controls.Add(this.labelJmeno);
-            this.Controls.Add(this.labelMaska);
             this.Controls.Add(this.tabulka);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(874, 549);
+            this.MinimumSize = new System.Drawing.Size(874, 549);
             this.Name = "Editace_osob";
             this.Text = "DIMOS | Docházka - Editace osob";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editace_osob_FormClosing);
@@ -313,8 +319,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.Label labelMaska;
         private System.Windows.Forms.Button buttonUlozit;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }

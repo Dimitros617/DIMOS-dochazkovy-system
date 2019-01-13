@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Docházka
@@ -27,15 +23,15 @@ namespace Docházka
             UniversalniTabulka = new OsobniTabulka();
             Osoby = new List<Osoba>();
             UniversalniTabulka.Reset();
-
         }
 
         private void pridat_Click(object sender, EventArgs e)
         {
-            
             Editace_osob pridat = new Editace_osob("NEW", this);
             pridat.ShowDialog();
+
         }
+
         private void nastaveni_MouseEnter(object sender, EventArgs e)
         {
             nastaveni.BackColor = System.Drawing.Color.White;
@@ -60,8 +56,15 @@ namespace Docházka
 
         }
 
+        /**
+         * 
+         * Metoda Nastaví čas jméno svátku dnes a datum
+         * vykreslí okno ve středu obrazovky
+         **/
         private void Main_Load(object sender, EventArgs e)
         {
+            this.Location = new Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), (Screen.PrimaryScreen.Bounds.Height / 2) - (this.Size.Height / 2));
+
             cas.Text = String.Format("{0:00}", DateTime.Now.Hour) + ":" + String.Format("{0:00}", DateTime.Now.Minute);
             datum.Text = DateTime.Now.Day + ". " + mesice[DateTime.Now.Month - 1];
             den.Text = "" + dnyCz[IndexOf(dnyEn, "" + DateTime.Now.DayOfWeek)];
@@ -72,6 +75,10 @@ namespace Docházka
 
         }
 
+
+        /**
+         * Metoda vrací index stringu ve stringovém poli
+         **/
         private int IndexOf(String[] arr, String value)
         {
             for (int i = 0; i < arr.Length; i++)

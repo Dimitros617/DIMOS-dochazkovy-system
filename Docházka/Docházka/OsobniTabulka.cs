@@ -21,19 +21,26 @@ namespace Docházka
 
         }
 
-        public void addLine(String hash, String a, String b, String c, String d)
+        /**
+         * Redirect metoda na setLine()
+         **/
+        public void addLine(String hash, String hodina, String a, String b, String c, String d)
         {
-            setLine(hash,a,b,c,d);
+            setLine(hash,hodina,a,b,c,d);
         }
 
-        public void setLine(String hash, String a, String b, String c, String d)
+        /**
+         * Metoda nastaví jeden řádek do pomyslné tabulky rozdělí hash do hash listu a na daný index uloží zbylá data do Listu Listuů
+         **/
+        public void setLine(String hash, String hodina, String a, String b, String c, String d)
         {
 
             int i = HashList.IndexOf(hash);
             if (i == -1)
             {
                 HashList.Add(hash);
-                Tabulka.Add(new List<string>(4));
+                Tabulka.Add(new List<string>(5));
+                Tabulka[HashList.IndexOf(hash)].Add(hodina);
                 Tabulka[HashList.IndexOf(hash)].Add(a);
                 Tabulka[HashList.IndexOf(hash)].Add(b);
                 Tabulka[HashList.IndexOf(hash)].Add(c);
@@ -52,25 +59,28 @@ namespace Docházka
 
         }
 
+        /**
+         * Metoda naplní tabulku továrníma datama
+         **/
         public void Reset() {
 
             HashList = new List<string>();
             Tabulka = new List<List<String>>();
 
-            setLine("4", "7:30", "11:30", "", "");
-            setLine("6", "7:30", "13:30", "", "");
-            setLine("7", "7:00", "12:30", "13:00", "14:30");
-            setLine("D", "D", "D", "D", "D");
-            setLine("N", "N", "N", "N", "N");
-            setLine("OČR", "OČR", "OČR", "OČR", "OČR");
-            setLine("ST", "ST", "ST", "ST", "ST");
-            setLine("SV", "SV", "SV", "SV", "SV");
+            setLine("4","4", "7:30", "11:30", "", "");
+            setLine("6","6", "7:30", "13:30", "", "");
+            setLine("7","7", "7:00", "12:30", "13:00", "14:30");
+            setLine("D","0", "D", "D", "D", "D");
+            setLine("N","0", "N", "N", "N", "N");
+            setLine("OČR","0", "OČR", "OČR", "OČR", "OČR");
+            setLine("ST","0", "ST", "ST", "ST", "ST");
+            setLine("SV","8", "SV", "SV", "SV", "SV");
             //------------------------------------------------------
-            setLine("8/1", "7:00", "12:30", "13:00", "15:30");
-            setLine("8/2", "7:00", "12:30", "13:00", "15:30");
-            setLine("8/3", "7:00", "12:30", "13:00", "15:30");
-            setLine("8/4", "7:00", "12:30", "13:00", "15:30");
-            setLine("8/5", "7:00", "12:30", "13:00", "15:30");
+            setLine("8/1", "8", "7:00", "12:30", "13:00", "15:30");
+            setLine("8/2", "8", "7:00", "12:30", "13:00", "15:30");
+            setLine("8/3", "8", "7:00", "12:30", "13:00", "15:30");
+            setLine("8/4", "8", "7:00", "12:30", "13:00", "15:30");
+            setLine("8/5", "8", "7:00", "12:30", "13:00", "15:30");
 
         }
     }
