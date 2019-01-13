@@ -16,14 +16,17 @@ namespace Docházka
         public OsobniTabulka osobniTabulka;
         public Osoba osoba;
         public Seznam seznam;
+        public Main main;
+        private Boolean ukoncit = true;
 
 
-        public Editace_osob(String p, Osoba osoba)
+        public Editace_osob(String p, Main main)
         {
             InitializeComponent();
-            this.osobniTabulka = osoba.osobniTabulka;
-            this.osoba = osoba;
 
+            this.osoba = new Osoba();
+            this.osobniTabulka = osoba.osobniTabulka;
+            this.main = main;
             if (p.Equals("NEW"))
                 labelNadpis.Text = "Přidat osobu";
             else
@@ -40,9 +43,10 @@ namespace Docházka
         public Editace_osob(String p, Osoba osoba, Seznam seznam)
         {
             InitializeComponent();
-            this.osobniTabulka = osoba.osobniTabulka;
+
             this.seznam = seznam;
-            this.osoba = osoba;
+            this.osoba = new Osoba();
+            this.osobniTabulka = osoba.osobniTabulka;
 
             if (p.Equals("NEW"))
                 labelNadpis.Text = "Přidat osobu";
@@ -200,7 +204,8 @@ namespace Docházka
 
             osoba.osobniTabulka = ostab;
 
-
+            ukoncit = false;
+            main.Osoby.Add(osoba);
             Close();
         }
 
@@ -214,6 +219,24 @@ namespace Docházka
         {
             buttonUlozit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
 
+        }
+
+        private void Editace_osob_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (ukoncit)
+            {
+                DialogResult result = MessageBox.Show("Přejete si data nejdříve uložit ?", "Uložit ?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    buttonUlozit_Click(sender, e);
+                    this.Close();
+                }
+                else
+                {
+                    ukoncit = false;
+                    this.Close();
+                }
+            }
         }
     }
 }

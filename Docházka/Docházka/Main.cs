@@ -32,9 +32,8 @@ namespace Docházka
 
         private void pridat_Click(object sender, EventArgs e)
         {
-            Osoba o = new Osoba();
-            Osoby.Add(o);
-            Editace_osob pridat = new Editace_osob("NEW", o);
+            
+            Editace_osob pridat = new Editace_osob("NEW", this);
             pridat.ShowDialog();
         }
         private void nastaveni_MouseEnter(object sender, EventArgs e)

@@ -107,8 +107,7 @@ namespace Docházka
         private void pridat_Click(object sender, EventArgs e)
         {
             Osoba o = new Osoba();
-            main.Osoby.Add(o);
-            Editace_osob eo = new Editace_osob("NEW", o);
+            Editace_osob eo = new Editace_osob("NEW", main);
             eo.seznam = this;
             Editace_osob pridat = eo;
 

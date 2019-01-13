@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editace_osob));
             this.labelJmeno = new System.Windows.Forms.Label();
             this.textBoxJmeno = new System.Windows.Forms.TextBox();
@@ -47,6 +48,7 @@
             this.buttonReset = new System.Windows.Forms.Button();
             this.labelMaska = new System.Windows.Forms.Label();
             this.buttonUlozit = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabulka.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -139,7 +141,7 @@
             this.tabulka.Location = new System.Drawing.Point(383, 61);
             this.tabulka.Name = "tabulka";
             this.tabulka.RowCount = 1;
-            this.tabulka.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tabulka.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 401F));
             this.tabulka.Size = new System.Drawing.Size(405, 401);
             this.tabulka.TabIndex = 7;
             // 
@@ -208,6 +210,7 @@
             this.buttonPridatRadek.TabIndex = 16;
             this.buttonPridatRadek.TabStop = false;
             this.buttonPridatRadek.Text = "Přidat řádek";
+            this.toolTip.SetToolTip(this.buttonPridatRadek, "Tlačítko přidá jeden nový prázdný řádek.");
             this.buttonPridatRadek.UseVisualStyleBackColor = false;
             this.buttonPridatRadek.Click += new System.EventHandler(this.button1_Click);
             this.buttonPridatRadek.MouseEnter += new System.EventHandler(this.buttonPridatRadek_MouseEnter);
@@ -226,6 +229,7 @@
             this.buttonReset.TabIndex = 17;
             this.buttonReset.TabStop = false;
             this.buttonReset.Text = "Reset";
+            this.toolTip.SetToolTip(this.buttonReset, "Tlačítko resetuje data v tabulce do posledního uloženého stavu.");
             this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             this.buttonReset.MouseEnter += new System.EventHandler(this.buttonReset_MouseEnter);
@@ -251,6 +255,7 @@
             this.buttonUlozit.TabIndex = 19;
             this.buttonUlozit.TabStop = false;
             this.buttonUlozit.Text = "Uložit";
+            this.toolTip.SetToolTip(this.buttonUlozit, "Talčíto vše uloží a zavře okno.");
             this.buttonUlozit.UseVisualStyleBackColor = false;
             this.buttonUlozit.Click += new System.EventHandler(this.buttonUlozit_Click);
             this.buttonUlozit.MouseEnter += new System.EventHandler(this.buttonUlozit_MouseEnter);
@@ -276,9 +281,11 @@
             this.Controls.Add(this.labelJmeno);
             this.Controls.Add(this.labelMaska);
             this.Controls.Add(this.tabulka);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Editace_osob";
             this.Text = "DIMOS | Docházka - Editace osob";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editace_osob_FormClosing);
             this.Load += new System.EventHandler(this.Editace_osob_Load);
             this.tabulka.ResumeLayout(false);
             this.tabulka.PerformLayout();
@@ -308,5 +315,6 @@
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Label labelMaska;
         private System.Windows.Forms.Button buttonUlozit;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

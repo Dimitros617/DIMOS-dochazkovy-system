@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Seznam));
             this.nastaveni = new System.Windows.Forms.Label();
             this.pridat = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.textBoxHledat = new System.Windows.Forms.TextBox();
             this.buttonHledat = new System.Windows.Forms.Button();
             this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // nastaveni
@@ -116,6 +118,7 @@
             this.buttonHledat.TabIndex = 18;
             this.buttonHledat.TabStop = false;
             this.buttonHledat.Text = "Hledat";
+            this.toolTip.SetToolTip(this.buttonHledat, "Vyhledá celek nebo část jména.");
             this.buttonHledat.UseVisualStyleBackColor = false;
             this.buttonHledat.Click += new System.EventHandler(this.buttonHledat_Click);
             // 
@@ -165,5 +168,6 @@
         private System.Windows.Forms.TextBox textBoxHledat;
         private System.Windows.Forms.Button buttonHledat;
         private System.Windows.Forms.Label labelZadneVysledkyHledani;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

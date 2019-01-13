@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Seznam = new System.Windows.Forms.Button();
             this.den = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.nastaveni = new System.Windows.Forms.Label();
             this.pridat = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,6 +60,7 @@
             this.Seznam.TabIndex = 14;
             this.Seznam.TabStop = false;
             this.Seznam.Text = "Seznam";
+            this.toolTip.SetToolTip(this.Seznam, "Zobrazit seznam všech osob.");
             this.Seznam.UseVisualStyleBackColor = false;
             this.Seznam.Click += new System.EventHandler(this.Seznam_Click);
             this.Seznam.MouseEnter += new System.EventHandler(this.Seznam_MouseEnter_1);
@@ -278,5 +281,6 @@
         public System.Windows.Forms.Label nastaveni;
         public System.Windows.Forms.Label pridat;
         public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
