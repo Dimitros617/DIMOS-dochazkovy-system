@@ -15,6 +15,7 @@ namespace Docházka
 
         public OsobniTabulka osobniTabulka;
         public Osoba osoba;
+        public Seznam seznam;
 
 
         public Editace_osob(String p, Osoba osoba)
@@ -28,9 +29,31 @@ namespace Docházka
             else
                 labelNadpis.Text = "Upravit osobu";
 
+            textBoxJmeno.Text = osoba.jmeno;
+            textBoxPrijmeni.Text = osoba.prijmeni;
+            textBoxOC.Text = osoba.osobnicislo;
             nactiTabulku();
             int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
             tabulka.Padding = new Padding(0, 0, vertScrollWidth, 0);
+        }
+
+        public Editace_osob(String p, Osoba osoba, Seznam seznam)
+        {
+            InitializeComponent();
+            this.osobniTabulka = osoba.osobniTabulka;
+            this.seznam = seznam;
+            this.osoba = osoba;
+
+            if (p.Equals("NEW"))
+                labelNadpis.Text = "Přidat osobu";
+            else
+                labelNadpis.Text = "Upravit osobu";
+
+            textBoxJmeno.Text = osoba.jmeno;
+            textBoxPrijmeni.Text = osoba.prijmeni;
+            textBoxOC.Text = osoba.osobnicislo;
+            nactiTabulku();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -105,7 +128,7 @@ namespace Docházka
 
             tabulka.RowCount = 1;
 
-            OsobniTabulka t = this.osobniTabulka;
+            OsobniTabulka t = osobniTabulka;
             tabulka.Controls.Clear();
 
             for (int i = 0; i < t.HashList.Count; i++) {
@@ -149,9 +172,14 @@ namespace Docházka
 
         private void buttonUlozit_Click(object sender, EventArgs e)
         {
+
+            osoba.jmeno = textBoxJmeno.Text.Trim();
+            osoba.prijmeni = textBoxPrijmeni.Text.Trim();
+            osoba.osobnicislo = textBoxOC.Text.Trim();
+
             OsobniTabulka ostab = new OsobniTabulka();
 
-            for (int j = tabulka.RowCount; j > 1; j--)
+            for (int j = 2; j <= tabulka.RowCount; j++)
             {
                 int prazdnyRadek = 0;
 
@@ -171,10 +199,9 @@ namespace Docházka
             }
 
             osoba.osobniTabulka = ostab;
-            osoba.jmeno = this.labelJmeno.Text.Trim();
-            osoba.prijmeni = this.labelPrijmeni.Text.Trim();
-            osoba.osobnicislo = this.labelOC.Text.Trim();
-            this.Close();
+
+
+            Close();
         }
 
         private void buttonUlozit_MouseEnter(object sender, EventArgs e)
