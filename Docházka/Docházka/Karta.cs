@@ -12,15 +12,21 @@ namespace Docházka
     {
 
         public Color color;
-        public String nazev = "Kartago";
+        public String nazev = "Karta";
         public List<int> indexyOsob;
         public Main main;
 
-        public Karta() {
+        public String mesic;
+        public String rok;
 
+        public Karta(Main main) {
+
+            this.main = main;
             indexyOsob = new List<int>();
             color = new Color();
             setColor(32,45,68);
+            rok = DateTime.Now.Year + "";
+            mesic = main.mesice[DateTime.Now.Month-1];
 
         }
 
@@ -42,6 +48,12 @@ namespace Docházka
         public void pridatOsobu(int i) {
 
             indexyOsob.Add(i);
+
+        }
+
+        public int getPocetDnuVMesici() {
+
+            return DateTime.DaysInMonth(Int32.Parse(rok), main.IndexOf(main.mesice,mesic)+1);
 
         }
 

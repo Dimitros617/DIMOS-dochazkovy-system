@@ -48,10 +48,37 @@ namespace Docházka
 
         private void Editace_Karty_Load(object sender, EventArgs e)
         {
+            if (main.Osoby.Count == 0)
+            {
+                labelZadneVysledkyHledani.Visible = true;
 
-            labelZadneVysledkyHledani.Visible = main.Osoby.Count == 0 ? true : false;
+            }
+            else {
+
+                comboBoxMesic.Location = new Point(comboBoxMesic.Location.X, comboBoxMesic.Location.Y + 15);
+                comboBoxRok.Location = new Point(comboBoxRok.Location.X, comboBoxRok.Location.Y + 15);
+
+            }
+
+            setComboBox();
             vykresliSeznam();
             Refresh();
+        }
+
+        private void setComboBox() {
+
+            object[] mesice = new object[] { "Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec" };
+            comboBoxMesic.Items.AddRange(mesice);
+            comboBoxMesic.Text = karta.mesic;
+
+            int rok = Int32.Parse(karta.rok) - 1;
+            for (int i = 0; i < 10; i++)
+            {
+                comboBoxRok.Items.Add((rok+i) + "");
+            }
+            
+            comboBoxRok.Text = karta.rok;
+
         }
 
         private void vykresliSeznam() {
@@ -60,7 +87,7 @@ namespace Docházka
             {
 
                 //--- Vykreslit tlačítko přidat / smazat
-                var remove = new Button() { Text = karta.indexyOsob.IndexOf(i) == -1 ? "Přidat" : "Smazat" };
+                var remove = new Button() { Text = karta.indexyOsob.IndexOf(i) == -1 ? "Přidat" : "Odebrat" };
                 remove.Click += new EventHandler(change_Click);
                 remove.BackColor = karta.indexyOsob.IndexOf(i) == -1 ? blue : red;
                 remove.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -86,7 +113,7 @@ namespace Docházka
             {
 
                 karta.pridatOsobu(index);
-                ((Button)sender).Text = "Smazat";
+                ((Button)sender).Text = "Odebrat";
                 ((Button)sender).BackColor = red;
 
             }

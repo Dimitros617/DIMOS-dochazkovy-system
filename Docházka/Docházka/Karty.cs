@@ -31,7 +31,7 @@ namespace Docházka
 
         private void buttonPridatKartu_Click(object sender, EventArgs e)
         {
-            main.poleKaret.Add(new Karta());
+            main.poleKaret.Add(new Karta(main));
             table.Controls.Clear();
             vykreslitKarty();
         }

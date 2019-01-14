@@ -10,7 +10,7 @@ namespace Docházka
 
     public partial class Main : Form
     {
-        private String[] mesice = new String[12] { "Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec" };
+        public String[] mesice = new String[12] { "Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec" };
         private String[] dnyEn = new String[7] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         private String[] dnyCz = new String[7] { "PONDĚLÍ", "ÚTERÝ", "STŘEDA", "ČTVRTEK", "PÁTEK", "SOBOTA", "NEDĚLE" };
 
@@ -81,7 +81,7 @@ namespace Docházka
         /**
          * Metoda vrací index stringu ve stringovém poli
          **/
-        private int IndexOf(String[] arr, String value)
+        public int IndexOf(String[] arr, String value)
         {
             for (int i = 0; i < arr.Length; i++)
             {
