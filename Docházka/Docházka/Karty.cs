@@ -23,6 +23,8 @@ namespace Docházka
 
         private void Karty_Load(object sender, EventArgs e)
         {
+
+            this.ActiveControl = null;
             vykreslitKarty();
 
             if (main.poleKaret.Count == 0)
@@ -63,7 +65,7 @@ namespace Docházka
                  smazatToolStripMenuItem});
 
 
-                var add = new Button() { Text = main.poleKaret[i].nazev };
+                var add = new Button() { Text = main.poleKaret[i].nazev + (main.poleKaret[i].Finally ? (System.Environment.NewLine + main.poleKaret[i].rok + " " + main.poleKaret[i].mesic) : "" )};
                 add.Click += new EventHandler(add_Click);
                 add.BackColor = main.poleKaret[i].color;
                 add.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -88,8 +90,9 @@ namespace Docházka
             int index = ((ToolStripMenuItem)sender).MergeIndex;
             Editace_Karty kartaNasaveni = new Editace_Karty(index,main);
             kartaNasaveni.ShowDialog();
-            table.GetControlFromPosition(index % 3, index / 3).Text = main.poleKaret[index].nazev;
+            table.GetControlFromPosition(index % 3, index / 3).Text = main.poleKaret[index].nazev + (main.poleKaret[index].Finally ? (System.Environment.NewLine + main.poleKaret[index].rok + " " + main.poleKaret[index].mesic) : "");
             table.GetControlFromPosition(index % 3, index / 3).BackColor = main.poleKaret[index].color;
+
             Refresh();
         }
 
@@ -114,7 +117,10 @@ namespace Docházka
         {
 
             int index = ((Button)sender).TabIndex;
-
+            KartaTabulka k = new KartaTabulka(main,main.poleKaret[index]);
+            k.ShowDialog();
+            table.Controls.Clear();
+            vykreslitKarty();
         }
 
         private void Karty_MouseEnter(object sender, EventArgs e)

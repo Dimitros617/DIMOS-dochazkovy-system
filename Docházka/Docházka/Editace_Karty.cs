@@ -26,6 +26,8 @@ namespace Docházka
         public Editace_Karty(int i, Main main)
         {
             InitializeComponent();
+            this.ActiveControl = null;
+            SendKeys.Send("{TAB}");
             this.main = main;
             index = i;
             karta = main.poleKaret[index];
@@ -35,6 +37,23 @@ namespace Docházka
 
             tabulka = table;
             this.table.CellPaint += table_CellPaint;
+        }
+
+        public Editace_Karty(Karta karta, Main main) {
+
+            InitializeComponent();
+            this.ActiveControl = null;
+            SendKeys.Send("{TAB}");
+            this.main = main;
+            index = main.poleKaret.IndexOf(karta);
+            this.karta = main.poleKaret[index];
+
+            textBoxNazev.Text = karta.nazev;
+            buttonBarva.BackColor = karta.color;
+
+            tabulka = table;
+            this.table.CellPaint += table_CellPaint;
+
         }
 
         /**
@@ -51,12 +70,14 @@ namespace Docházka
             if (main.Osoby.Count == 0)
             {
                 labelZadneVysledkyHledani.Visible = true;
-
+                comboBoxRok.Visible = false;
+                comboBoxMesic.Visible = false;
             }
-            else {
 
-                comboBoxMesic.Location = new Point(comboBoxMesic.Location.X, comboBoxMesic.Location.Y + 15);
-                comboBoxRok.Location = new Point(comboBoxRok.Location.X, comboBoxRok.Location.Y + 15);
+            if (karta.Finally) {
+
+                comboBoxMesic.Enabled = false;
+                comboBoxRok.Enabled = false;
 
             }
 
@@ -135,9 +156,8 @@ namespace Docházka
                 ColorDialog dlg = new ColorDialog();
 
                 if (dlg.ShowDialog() == DialogResult.OK)
-                    karta.color = dlg.Color;
+                    buttonBarva.BackColor = dlg.Color;
 
-                buttonBarva.BackColor = karta.color;
                 Refresh();
         }
 
@@ -162,10 +182,34 @@ namespace Docházka
         private void buttonUlozit_Click(object sender, EventArgs e)
         {
 
-            karta.nazev = textBoxNazev.Text;
+            if (!karta.Finally)
+            {
+                DialogResult result = MessageBox.Show("Měsíc a Rok lze nastavit pouze jednou, chcete tedy vše uložit ?", "POZOR", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    karta.nazev = textBoxNazev.Text;
+                    karta.color = buttonBarva.BackColor;
+                    karta.mesic = comboBoxMesic.Text;
+                    karta.rok = comboBoxRok.Text;
 
-            ukoncit = false;
-            Close();
+                    karta.Finally = true;
+                    ukoncit = false;
+                    Close();
+                    this.Close();
+                }
+
+            }
+            else {
+
+                karta.nazev = textBoxNazev.Text;
+                karta.color = buttonBarva.BackColor;
+
+                karta.Finally = true;
+                ukoncit = false;
+                Close();
+                this.Close();
+
+            }
 
         }
 

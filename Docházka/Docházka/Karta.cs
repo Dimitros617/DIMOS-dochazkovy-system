@@ -16,6 +16,7 @@ namespace Docházka
         public List<int> indexyOsob;
         public Main main;
 
+        public Boolean Finally;
         public String mesic;
         public String rok;
 
@@ -27,6 +28,7 @@ namespace Docházka
             setColor(32,45,68);
             rok = DateTime.Now.Year + "";
             mesic = main.mesice[DateTime.Now.Month-1];
+            Finally = false;
 
         }
 
@@ -54,6 +56,19 @@ namespace Docházka
         public int getPocetDnuVMesici() {
 
             return DateTime.DaysInMonth(Int32.Parse(rok), main.IndexOf(main.mesice,mesic)+1);
+
+        }
+
+        public int getIntRok() {
+
+            return Int32.Parse(rok);
+
+        }
+
+        public int getIntMesic()
+        {
+
+            return main.IndexOf(main.mesice, mesic) + 1;
 
         }
 

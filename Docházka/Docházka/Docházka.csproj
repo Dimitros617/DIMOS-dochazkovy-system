@@ -58,6 +58,12 @@
       <DependentUpon>Editace_osob.cs</DependentUpon>
     </Compile>
     <Compile Include="Karta.cs" />
+    <Compile Include="KartaTabulka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KartaTabulka.Designer.cs">
+      <DependentUpon>KartaTabulka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Karty.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editace_osob.resx">
       <DependentUpon>Editace_osob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KartaTabulka.resx">
+      <DependentUpon>KartaTabulka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Karty.resx">
       <DependentUpon>Karty.cs</DependentUpon>

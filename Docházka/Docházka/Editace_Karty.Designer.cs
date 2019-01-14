@@ -57,18 +57,26 @@
             // 
             // comboBoxMesic
             // 
+            this.comboBoxMesic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxMesic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxMesic.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.comboBoxMesic.FormattingEnabled = true;
-            this.comboBoxMesic.Location = new System.Drawing.Point(428, 10);
+            this.comboBoxMesic.Location = new System.Drawing.Point(426, 16);
             this.comboBoxMesic.Name = "comboBoxMesic";
-            this.comboBoxMesic.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMesic.Size = new System.Drawing.Size(121, 29);
             this.comboBoxMesic.TabIndex = 23;
             // 
             // comboBoxRok
             // 
+            this.comboBoxRok.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxRok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxRok.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxRok.FormattingEnabled = true;
-            this.comboBoxRok.Location = new System.Drawing.Point(291, 10);
+            this.comboBoxRok.Location = new System.Drawing.Point(289, 16);
             this.comboBoxRok.Name = "comboBoxRok";
-            this.comboBoxRok.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRok.Size = new System.Drawing.Size(121, 29);
             this.comboBoxRok.TabIndex = 22;
             // 
             // labelZadneVysledkyHledani
@@ -77,7 +85,7 @@
             this.labelZadneVysledkyHledani.BackColor = System.Drawing.Color.Transparent;
             this.labelZadneVysledkyHledani.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelZadneVysledkyHledani.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
-            this.labelZadneVysledkyHledani.Location = new System.Drawing.Point(287, 30);
+            this.labelZadneVysledkyHledani.Location = new System.Drawing.Point(287, 20);
             this.labelZadneVysledkyHledani.Name = "labelZadneVysledkyHledani";
             this.labelZadneVysledkyHledani.Size = new System.Drawing.Size(228, 23);
             this.labelZadneVysledkyHledani.TabIndex = 21;

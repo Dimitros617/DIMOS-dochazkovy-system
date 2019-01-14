@@ -75,6 +75,7 @@ namespace Docházka
             webClient.Encoding = Encoding.UTF8;
             jmeno.Text = (webClient.DownloadString("http://svatky.adresa.info/txt").Split(';'))[1];
 
+            timer.Start();
         }
 
 
@@ -137,6 +138,12 @@ namespace Docházka
         {
             Karty k = new Karty(this);
             k.ShowDialog();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            cas.Text = String.Format("{0:00}", DateTime.Now.Hour) + ":" + String.Format("{0:00}", DateTime.Now.Minute);
+
         }
     }
 }
