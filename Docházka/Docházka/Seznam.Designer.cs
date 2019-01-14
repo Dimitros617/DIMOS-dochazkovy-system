@@ -38,6 +38,7 @@
             this.buttonHledat = new System.Windows.Forms.Button();
             this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.labelPrazdnySeznam = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nastaveni
@@ -85,7 +86,7 @@
             this.table.AutoScroll = true;
             this.table.BackColor = System.Drawing.Color.Transparent;
             this.table.ColumnCount = 5;
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
@@ -137,6 +138,19 @@
             this.labelZadneVysledkyHledani.Text = "Nebyly nalezeny žádné výsledky hledání";
             this.labelZadneVysledkyHledani.Visible = false;
             // 
+            // labelPrazdnySeznam
+            // 
+            this.labelPrazdnySeznam.AutoSize = true;
+            this.labelPrazdnySeznam.BackColor = System.Drawing.Color.Transparent;
+            this.labelPrazdnySeznam.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelPrazdnySeznam.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+            this.labelPrazdnySeznam.Location = new System.Drawing.Point(34, 136);
+            this.labelPrazdnySeznam.Name = "labelPrazdnySeznam";
+            this.labelPrazdnySeznam.Size = new System.Drawing.Size(186, 23);
+            this.labelPrazdnySeznam.TabIndex = 20;
+            this.labelPrazdnySeznam.Text = "Seznam je prázdný";
+            this.labelPrazdnySeznam.Visible = false;
+            // 
             // Seznam
             // 
             this.AcceptButton = this.buttonHledat;
@@ -144,6 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(764, 661);
+            this.Controls.Add(this.labelPrazdnySeznam);
             this.Controls.Add(this.labelZadneVysledkyHledani);
             this.Controls.Add(this.buttonHledat);
             this.Controls.Add(this.textBoxHledat);
@@ -171,5 +186,6 @@
         private System.Windows.Forms.Button buttonHledat;
         private System.Windows.Forms.Label labelZadneVysledkyHledani;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label labelPrazdnySeznam;
     }
 }

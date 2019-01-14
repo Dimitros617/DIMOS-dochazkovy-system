@@ -35,6 +35,7 @@ namespace Docházka
 
         private void Seznam_Load(object sender, EventArgs e)
         {
+            labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
             this.Location = new Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), (Screen.PrimaryScreen.Bounds.Height / 2) - (this.Size.Height / 2));
             vykresliTabulku();
         }
@@ -44,18 +45,12 @@ namespace Docházka
          **/
         public void vykresliTabulku() {
 
-            if (main.Osoby.Count == 0 || main.Osoby == null)
-            {
-                table.Controls.Add(new Label() { Margin = new Padding(10, 6, 0, 0), Text = "Seznam je prázdný", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73))))) }, 1, 0);
-            }
-            else
-            {
                 for (int i = 0; i < main.Osoby.Count; i++)
                 {
 
                     addFromOsobyToTable(i);
                 }
-            }
+            
         }
 
         /**
@@ -128,13 +123,14 @@ namespace Docházka
         {
 
             int index = ((Button)sender).TabIndex;
-            DialogResult dialogResult = MessageBox.Show( "Opravdu si přejete odstranit osobu: " + main.Osoby[index].jmeno + " " + main.Osoby[index].prijmeni, "ODSTRANIT", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show( "Opravdu si přejete odstranit osobu: " + main.Osoby[index].jmeno + " " + main.Osoby[index].prijmeni + System.Environment.NewLine + System.Environment.NewLine + "Celá tabulka se graficky obnový", "ODSTRANIT", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 main.Osoby.RemoveAt(index);
                 table.Controls.Clear();
                 vykresliTabulku();
             }
+            labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
         }
 
         /**
@@ -150,8 +146,10 @@ namespace Docházka
 
             pridat.ShowDialog();
 
-            table.Controls.Clear();
-            vykresliTabulku();
+            labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
+            addFromOsobyToTable(main.Osoby.Count-1);
+            //table.Controls.Clear();
+            //vykresliTabulku();
         }
 
         private void nastaveni_MouseEnter(object sender, EventArgs e)

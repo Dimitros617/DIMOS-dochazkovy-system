@@ -24,6 +24,9 @@ namespace Docházka
         private void Karty_Load(object sender, EventArgs e)
         {
             vykreslitKarty();
+
+            if (main.poleKaret.Count == 0)
+            labelZadneVysledkyHledani.Visible = true;
         }
 
         private void buttonPridatKartu_Click(object sender, EventArgs e)
@@ -34,6 +37,12 @@ namespace Docházka
         }
 
         private void vykreslitKarty() {
+
+            if (main.poleKaret.Count == 0)
+            labelZadneVysledkyHledani.Visible = true;
+            else
+            labelZadneVysledkyHledani.Visible = false;
+
 
             for (int i = 0; i < main.poleKaret.Count; i++)
             {
@@ -54,15 +63,19 @@ namespace Docházka
                  smazatToolStripMenuItem});
 
 
-                var add = new Button() { Text = "Karta" };
+                var add = new Button() { Text = main.poleKaret[i].nazev };
                 add.Click += new EventHandler(add_Click);
-                add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+                add.BackColor = main.poleKaret[i].color;
                 add.Cursor = System.Windows.Forms.Cursors.Hand;
                 add.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
                 add.ForeColor = System.Drawing.Color.White;
-                add.Size = new System.Drawing.Size(142, 32);
+                add.Size = new System.Drawing.Size(200, 100);
+                add.Anchor = System.Windows.Forms.AnchorStyles.Top;
                 add.TabIndex = i;
+                //add.MouseEnter += new System.EventHandler(Karty_MouseEnter);
+                //add.MouseLeave += new System.EventHandler(Karty_MouseLeave);
                 add.ContextMenuStrip = c;
+                toolTip.SetToolTip(add, "Kliknutím pravým tlačítkem můžete kartu Nastavit neb Smazat");
                 table.Controls.Add(add, i % 3, i / 3);
 
             }
@@ -73,7 +86,10 @@ namespace Docházka
         {
 
             int index = ((ToolStripMenuItem)sender).MergeIndex;
-            label1.Text = index + " nastaveni";
+            Editace_Karty kartaNasaveni = new Editace_Karty(index,main);
+            kartaNasaveni.ShowDialog();
+            table.GetControlFromPosition(index % 3, index / 3).Text = main.poleKaret[index].nazev;
+            table.GetControlFromPosition(index % 3, index / 3).BackColor = main.poleKaret[index].color;
             Refresh();
         }
 
@@ -81,10 +97,19 @@ namespace Docházka
         {
 
             int index = ((ToolStripMenuItem)sender).MergeIndex;
-            label1.Text = index + " smazat";
+
+            DialogResult result = MessageBox.Show("Opravdu si přejete smazat kartu: " + main.poleKaret[index].nazev, "SMAZAT ?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                main.poleKaret.RemoveAt(index);
+                table.Controls.Clear();
+                vykreslitKarty();
+            }
         }
 
-
+        /**
+         * Klinutí na kartu
+         **/
         private void add_Click(object sender, EventArgs e)
         {
 
@@ -92,23 +117,20 @@ namespace Docházka
 
         }
 
-        private void nastaveniToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void Karty_MouseEnter(object sender, EventArgs e)
         {
+            ((Button)sender).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+        }
+
+        private void Karty_MouseLeave(object sender, EventArgs e)
+        {
+            ((Button)sender).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
 
         }
 
 
 
-        /*private void button1_Click(object sender, EventArgs e)
-        {
-            ColorDialog dlg = new ColorDialog();
 
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                Color c = dlg.Color;
-                button1.BackColor = new Color();
-                
-            }
-        }*/// Výber barvy
+
     }
 }

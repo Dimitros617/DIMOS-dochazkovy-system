@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editace_Karty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editace_Karty.Designer.cs">
+      <DependentUpon>Editace_Karty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editace_osob.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,9 @@
     <Compile Include="Seznam.Designer.cs">
       <DependentUpon>Seznam.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Editace_Karty.resx">
+      <DependentUpon>Editace_Karty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editace_osob.resx">
       <DependentUpon>Editace_osob.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Image\DIMOS_LOGO_Transparent_40_procent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Image\DIMOS_LOGO_Transparent_40_procent_Small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

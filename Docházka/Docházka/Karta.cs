@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Docházka
 {
@@ -11,13 +12,15 @@ namespace Docházka
     {
 
         public Color color;
-        public String nazev;
+        public String nazev = "Kartago";
         public List<int> indexyOsob;
         public Main main;
 
         public Karta() {
 
+            indexyOsob = new List<int>();
             color = new Color();
+            setColor(32,45,68);
 
         }
 

@@ -93,6 +93,16 @@ namespace Docházka.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DIMOS_LOGO_Transparent_40_procent_Small {
+            get {
+                object obj = ResourceManager.GetObject("DIMOS_LOGO_Transparent_40_procent_Small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DIMOS_LOGO_Transparent_75_percent {
             get {
                 object obj = ResourceManager.GetObject("DIMOS_LOGO_Transparent_75_percent", resourceCulture);

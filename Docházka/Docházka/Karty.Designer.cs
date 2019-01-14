@@ -28,17 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Karty));
-            this.table = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonPridatKartu = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.table = new System.Windows.Forms.TableLayoutPanel();
+            this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.labelZadneVysledkyHledani);
+            this.panel1.Controls.Add(this.buttonPridatKartu);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 38);
+            this.panel1.TabIndex = 1;
+            // 
+            // buttonPridatKartu
+            // 
+            this.buttonPridatKartu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPridatKartu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.buttonPridatKartu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPridatKartu.ForeColor = System.Drawing.Color.White;
+            this.buttonPridatKartu.Location = new System.Drawing.Point(649, 4);
+            this.buttonPridatKartu.Name = "buttonPridatKartu";
+            this.buttonPridatKartu.Size = new System.Drawing.Size(139, 32);
+            this.buttonPridatKartu.TabIndex = 0;
+            this.buttonPridatKartu.Text = "Přidat Kartu";
+            this.toolTip.SetToolTip(this.buttonPridatKartu, "Kliknutím přidáte novou kartu");
+            this.buttonPridatKartu.UseVisualStyleBackColor = false;
+            this.buttonPridatKartu.Click += new System.EventHandler(this.buttonPridatKartu_Click);
+            // 
             // table
             // 
-            this.table.BackgroundImage = global::Docházka.Properties.Resources.DIMOS_LOGO_Transparent_40_procent;
+            this.table.AutoScroll = true;
+            this.table.BackColor = System.Drawing.Color.Transparent;
+            this.table.BackgroundImage = global::Docházka.Properties.Resources.DIMOS_LOGO_Transparent_40_procent_Small;
             this.table.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.table.ColumnCount = 3;
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -54,38 +83,18 @@
             this.table.Size = new System.Drawing.Size(800, 450);
             this.table.TabIndex = 0;
             // 
-            // panel1
+            // labelZadneVysledkyHledani
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.buttonPridatKartu);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 38);
-            this.panel1.TabIndex = 1;
-            // 
-            // buttonPridatKartu
-            // 
-            this.buttonPridatKartu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPridatKartu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
-            this.buttonPridatKartu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPridatKartu.ForeColor = System.Drawing.Color.White;
-            this.buttonPridatKartu.Location = new System.Drawing.Point(649, 3);
-            this.buttonPridatKartu.Name = "buttonPridatKartu";
-            this.buttonPridatKartu.Size = new System.Drawing.Size(139, 32);
-            this.buttonPridatKartu.TabIndex = 0;
-            this.buttonPridatKartu.Text = "Přidat Kartu";
-            this.buttonPridatKartu.UseVisualStyleBackColor = false;
-            this.buttonPridatKartu.Click += new System.EventHandler(this.buttonPridatKartu_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(335, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.labelZadneVysledkyHledani.AutoSize = true;
+            this.labelZadneVysledkyHledani.BackColor = System.Drawing.Color.Transparent;
+            this.labelZadneVysledkyHledani.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelZadneVysledkyHledani.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+            this.labelZadneVysledkyHledani.Location = new System.Drawing.Point(276, 14);
+            this.labelZadneVysledkyHledani.Name = "labelZadneVysledkyHledani";
+            this.labelZadneVysledkyHledani.Size = new System.Drawing.Size(239, 23);
+            this.labelZadneVysledkyHledani.TabIndex = 20;
+            this.labelZadneVysledkyHledani.Text = "Seznam karet je prázdný";
+            this.labelZadneVysledkyHledani.Visible = false;
             // 
             // Karty
             // 
@@ -109,6 +118,7 @@
         private System.Windows.Forms.TableLayoutPanel table;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonPridatKartu;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelZadneVysledkyHledani;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
