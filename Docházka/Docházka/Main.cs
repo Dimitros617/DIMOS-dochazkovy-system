@@ -97,7 +97,9 @@ namespace Docházka
         private void Seznam_Click(object sender, EventArgs e)
         {
             Seznam seznam = new Seznam(this);
+            this.Hide();
             seznam.ShowDialog();
+            this.Show();
         }
 
         private void Seznam_MouseEnter(object sender, EventArgs e)

@@ -8,6 +8,7 @@ namespace Docházka
 {
     public class Osoba
     {
+        public List<int> karty;
         public List<List<String>> dochazka;
         public String jmeno;
         public String prijmeni;
@@ -17,6 +18,7 @@ namespace Docházka
         public Osoba(){
 
             dochazka = new List<List<string>>();
+            karty = new List<int>();
             osobniTabulka = new OsobniTabulka();
             osobniTabulka.Reset();
         }

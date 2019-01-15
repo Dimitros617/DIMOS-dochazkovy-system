@@ -67,6 +67,8 @@ namespace Docházka
 
         private void Editace_Karty_Load(object sender, EventArgs e)
         {
+            this.Location = new Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), (Screen.PrimaryScreen.Bounds.Height / 2) - (this.Size.Height / 2));
+
             if (main.Osoby.Count == 0)
             {
                 labelZadneVysledkyHledani.Visible = true;
@@ -131,15 +133,20 @@ namespace Docházka
             int index = ((Button)sender).TabIndex;
 
             if (karta.indexyOsob.IndexOf(index) == -1)
-            {
+            {// zde se přidává osoba do karty
 
                 karta.pridatOsobu(index);
+                main.Osoby[index].karty.Add(main.poleKaret.IndexOf(karta));
+                main.Osoby[index].dochazka.Add(new List<string>());
                 ((Button)sender).Text = "Odebrat";
                 ((Button)sender).BackColor = red;
 
             }
-            else {
+            else
+            {// zde se odebírá osoba z karty
 
+                main.Osoby[index].dochazka.RemoveAt(main.Osoby[index].karty.IndexOf(main.poleKaret.IndexOf(karta)));
+                main.Osoby[index].karty.RemoveAll(x => x == main.poleKaret.IndexOf(karta));
                 karta.indexyOsob.RemoveAll(x => x == index);
                 ((Button)sender).Text = "Přidat";
                 ((Button)sender).BackColor = blue;

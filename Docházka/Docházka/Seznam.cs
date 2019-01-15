@@ -142,14 +142,14 @@ namespace Docházka
 
             Editace_osob eo = new Editace_osob("NEW", main);
             eo.seznam = this;
-            Editace_osob pridat = eo;
 
-            pridat.ShowDialog();
+            eo.ShowDialog();
 
-            labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
-            addFromOsobyToTable(main.Osoby.Count-1);
-            //table.Controls.Clear();
-            //vykresliTabulku();
+            if (main.Osoby.Count != 0)
+            {
+                labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
+                addFromOsobyToTable(main.Osoby.Count - 1);
+            }
         }
 
         private void nastaveni_MouseEnter(object sender, EventArgs e)

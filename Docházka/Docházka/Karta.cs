@@ -11,6 +11,7 @@ namespace Docházka
     public class Karta
     {
 
+
         public Color color;
         public String nazev = "Karta";
         public List<int> indexyOsob;
