@@ -45,7 +45,7 @@ namespace Docházka
 
             if (karta.indexyOsob.Count != 0)
             {
-
+                
                 table.Visible = true;
                 labelMesic.Visible = true;
                 labelRok.Visible = true;
@@ -53,10 +53,11 @@ namespace Docházka
                 labelZadneVysledkyHledani.Visible = false;
 
                 //--- vykreslení hlavyčky a nastavení veliskoti tabulky
+                //table.Size = new Size(Size.Width, (2 + karta.indexyOsob.Count) * 30);
                 table.Controls.Clear();
                 table.ColumnStyles.Clear();
                 table.RowStyles.Clear();
-                table.Dock = DockStyle.Fill;
+                //table.Dock = DockStyle.Top;
                 table.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
 
@@ -69,16 +70,16 @@ namespace Docházka
                 table.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Jmeno prijmeni
                 table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F)); // Pracovní doba a přesčas
 
-                table.Controls.Add(new Label() { Margin = new Padding(8, 9, 0, 0), Text = "ID", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 0, 0);
-                table.Controls.Add(new Label() { Margin = new Padding(5, 9, 0, 0), Text = "Jméno Příjmení ", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 1, 0);
-                table.Controls.Add(new Label() { Margin = new Padding(5, 9, 0, 0), Text = "Pracovní doba" + System.Environment.NewLine + "Přesčas", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 2, 0);
+                table.Controls.Add(new Label() { Margin = new Padding(8, 6, 0, 0), Text = "ID", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 0, 0);
+                table.Controls.Add(new Label() { Margin = new Padding(5, 6, 0, 0), Text = "Jméno Příjmení ", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 1, 0);
+                table.Controls.Add(new Label() { Margin = new Padding(5, 5, 0, 0), Text = "Pracovní doba" + System.Environment.NewLine + "Přesčas", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 2, 0);
 
 
                 for (int i = 3; i < karta.getPocetDnuVMesici() + 3; i++)
                 {
 
                     table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, (float)(100 / karta.getPocetDnuVMesici())));
-                    table.Controls.Add(new Label() { Anchor = AnchorStyles.Top, Margin = new Padding(0, 9, 0, 0), Text = i - 2 + "", BackColor = Color.Transparent, AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, i, 0);
+                    table.Controls.Add(new Label() { Anchor = AnchorStyles.Top, Margin = new Padding(0, 7, 0, 0), Text = i - 2 + "", BackColor = Color.Transparent, AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, i, 0);
 
 
                 }
@@ -95,8 +96,7 @@ namespace Docházka
                     vykresliOsobu(i);
                 }
 
-
-                table.Refresh();
+                //table.Refresh();
 
             }
             else
@@ -114,14 +114,18 @@ namespace Docházka
 
         private void vykresliOsobu(int i) {
 
-
+            table.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            table.Controls.Add(new Label() { Margin = new Padding(8, 6, 0, 0), Text = i+1 + ".", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 0, i+1);
+            table.Controls.Add(new Label() { Margin = new Padding(5, 6, 0, 0), Text = main.Osoby[karta.indexyOsob[i]].jmeno + " " + main.Osoby[karta.indexyOsob[i]].prijmeni + " ", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 1, i+1);
 
         }
 
         private void buttonNastavit_Click(object sender, EventArgs e)
         {
             Editace_Karty k = new Editace_Karty(karta, main);
+            
             k.ShowDialog();
+            
             new KartaTabulka(main, karta).ShowDialog();
             this.Close();
         }

@@ -114,18 +114,20 @@
             // table
             // 
             this.table.AutoScroll = true;
+            this.table.AutoSize = true;
+            this.table.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.table.ColumnCount = 1;
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 761F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.table.Dock = System.Windows.Forms.DockStyle.Top;
             this.table.Location = new System.Drawing.Point(0, 40);
             this.table.Name = "table";
             this.table.Padding = new System.Windows.Forms.Padding(20);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(800, 410);
+            this.table.Size = new System.Drawing.Size(800, 42);
             this.table.TabIndex = 1;
             this.table.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.table_CellPaint);
             // 
@@ -156,6 +158,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
