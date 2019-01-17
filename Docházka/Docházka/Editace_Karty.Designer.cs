@@ -118,6 +118,7 @@
             this.textBoxNazev.Name = "textBoxNazev";
             this.textBoxNazev.Size = new System.Drawing.Size(282, 36);
             this.textBoxNazev.TabIndex = 0;
+            this.textBoxNazev.TextChanged += new System.EventHandler(this.textBoxNazev_TextChanged);
             // 
             // table
             // 

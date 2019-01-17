@@ -243,5 +243,9 @@ namespace Docházka
 
         }
 
+        private void textBoxNazev_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

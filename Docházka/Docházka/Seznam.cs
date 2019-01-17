@@ -129,8 +129,10 @@ namespace Docházka
             if (dialogResult == DialogResult.Yes)
             {
                 main.Osoby.RemoveAt(index);
+                table.SuspendLayout();
                 table.Controls.Clear();
                 vykresliTabulku();
+                table.ResumeLayout();
             }
             labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
         }
@@ -188,6 +190,8 @@ namespace Docházka
          **/
         private void buttonHledat_Click(object sender, EventArgs e)
         {
+            table.Visible = false;
+            table.SuspendLayout();
             if (!textBoxHledat.Text.Trim().ToLower().Equals("") && main.Osoby != null)
             {
                 int count = 0;
@@ -216,7 +220,8 @@ namespace Docházka
                     table.GetControlFromPosition(4, i).Visible = true;
                 }
             }
-
+            table.ResumeLayout();
+            table.Visible = true;
         }
 
         private void Seznam_Resize(object sender, EventArgs e)

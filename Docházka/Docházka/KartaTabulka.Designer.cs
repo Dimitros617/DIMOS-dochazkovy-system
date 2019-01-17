@@ -93,6 +93,7 @@
             this.buttonUlozit.TabIndex = 1;
             this.buttonUlozit.Text = "Uložit";
             this.buttonUlozit.UseVisualStyleBackColor = false;
+            this.buttonUlozit.Click += new System.EventHandler(this.buttonUlozit_Click);
             // 
             // label1
             // 

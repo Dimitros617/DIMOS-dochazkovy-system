@@ -142,7 +142,9 @@ namespace Docházka
         private void Karty_Click(object sender, EventArgs e)
         {
             Karty k = new Karty(this);
+            Hide();
             k.ShowDialog();
+            Show();
         }
 
         private void timer_Tick(object sender, EventArgs e)

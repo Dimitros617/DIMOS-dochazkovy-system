@@ -59,6 +59,17 @@ namespace Docházka
 
         }
 
+        public Boolean Obsahuje(String s) {
+
+            foreach (String i in HashList)
+            {
+                if (i.Equals(s, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
+
+        }
+
         /**
          * Metoda naplní tabulku továrníma datama
          **/

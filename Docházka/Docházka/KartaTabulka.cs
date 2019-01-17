@@ -234,7 +234,93 @@ namespace Docházka
                 ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))))},
                 table.ColumnCount - 1, posledniRadek + 1);
 
-            posledniRadek = posledniRadek + 2;
+            int idKarty = main.poleKaret.IndexOf(karta);
+            int idDochazky = main.Osoby[karta.indexyOsob[i]].karty.IndexOf(idKarty);
+
+            List<String> radek = main.Osoby[karta.indexyOsob[i]].dochazka[idDochazky];
+
+            for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++) {
+                int day = (int)new DateTime(karta.getIntRok(), karta.getIntMesic(), j - 2).DayOfWeek;
+                //--- prvni radek
+
+                TextBox t = new TextBox()
+                {
+                    BackColor = day > 5 || day == 0 ? Color.Yellow : BackColor,
+                    Text = radek.Count != (karta.getPocetDnuVMesici() * 2) ? "" : radek[j - 3],
+                    BorderStyle = System.Windows.Forms.BorderStyle.None,
+                    TextAlign = HorizontalAlignment.Center,
+                    TabIndex = karta.getPocetDnuVMesici() * posledniRadek + j,
+                    Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
+                    Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)))
+                };
+                t.TextChanged += new System.EventHandler(pole_TextChanged);
+                
+                table.Controls.Add(t, j, posledniRadek);
+
+                //--- druhy radek
+                TextBox t2 = new TextBox()
+                {
+                    BackColor = day > 5 || day == 0 ? Color.Yellow : BackColor,
+                    Text = radek.Count != (karta.getPocetDnuVMesici() * 2) ? "" : radek[(j - 3) + karta.getPocetDnuVMesici()],
+                    BorderStyle = System.Windows.Forms.BorderStyle.None,
+                    TextAlign = HorizontalAlignment.Center,
+                    TabIndex = karta.getPocetDnuVMesici() * (posledniRadek + 1) + j,
+                    Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
+                    Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)))
+                };
+                t2.TextChanged += new System.EventHandler(pole_TextChanged);
+
+                table.Controls.Add(t2, j, posledniRadek+1);
+
+            }
+
+
+                posledniRadek = posledniRadek + 2;
+        }
+
+        private void pole_TextChanged(object sender, EventArgs e)
+        {
+            int pocetHodin = 0;
+            int pocetDnu = 0;
+
+            for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++)
+            {
+                int row = table.GetPositionFromControl(((TextBox)sender)).Row;
+                String hodnota = table.GetControlFromPosition(j, row).Text;
+                pocetDnu = hodnota.Equals("")? pocetDnu : pocetDnu +1;
+
+                int index = row % 2 == 0 ? row / 2 : (row - 1) / 2;
+                OsobniTabulka o = main.Osoby[karta.indexyOsob[index]].osobniTabulka;
+                int dayOfWeek = (int)new DateTime(karta.getIntRok(), karta.getIntMesic(), j - 2).DayOfWeek;
+                dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
+
+
+                if (hodnota.Equals(""))
+                {
+                    
+                }
+                else if (!o.Obsahuje(hodnota))
+                {
+                    if (!o.Obsahuje(hodnota + "/" + dayOfWeek))
+                    {
+                        MessageBox.Show("Tato hodnota není obsažena v osobní tabulce Osoby");
+                        ((TextBox)sender).Text = "";
+                    }
+                    else
+                    {
+                        pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
+                    }
+                }
+                else
+                {
+                    pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
+                }
+
+            }
+
+            table.GetControlFromPosition(2, table.GetPositionFromControl(((TextBox)sender)).Row).Text = pocetHodin + "";
+            table.GetControlFromPosition(table.ColumnCount-1, table.GetPositionFromControl(((TextBox)sender)).Row).Text = pocetDnu + "";
+
         }
 
         private void buttonNastavit_Click(object sender, EventArgs e)
@@ -271,6 +357,32 @@ namespace Docházka
 
             if (e.Row == table.RowCount-1)
                 e.Graphics.FillRectangle(Brushes.Gray, e.CellBounds);
+        }
+
+        private void buttonUlozit_Click(object sender, EventArgs e)
+        {
+            posledniRadek = 1;
+            for (int i = 0; i < karta.indexyOsob.Count; i++)
+            {
+                List<String> radek = new List<string>(karta.getPocetDnuVMesici()*2);
+
+                for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++)
+                {
+                    radek.Add(table.GetControlFromPosition(j,posledniRadek).Text);
+                }
+
+                for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++)
+                {
+
+                    radek.Add(table.GetControlFromPosition(j, posledniRadek + 1).Text);
+
+                }
+                posledniRadek = posledniRadek + 2;
+
+                main.Osoby[karta.indexyOsob[i]].dochazka[main.Osoby[karta.indexyOsob[i]].karty.IndexOf(main.poleKaret.IndexOf(karta))] = radek;
+
+            }
+            Close();
         }
     }
 }

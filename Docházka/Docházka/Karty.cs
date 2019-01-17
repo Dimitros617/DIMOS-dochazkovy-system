@@ -52,17 +52,24 @@ namespace Docházka
                 ContextMenuStrip c = new ContextMenuStrip();
 
                 ToolStripMenuItem nastaveniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+                ToolStripMenuItem kopirovatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                 ToolStripMenuItem smazatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 
                 nastaveniToolStripMenuItem.MergeIndex = i;
                 nastaveniToolStripMenuItem.Text = "Nastavení";
                 nastaveniToolStripMenuItem.Click += new System.EventHandler(this.nastaveniToolStripMenuItem_Click);
+
+                kopirovatToolStripMenuItem.MergeIndex = i;
+                kopirovatToolStripMenuItem.Text = "Duplikovat";
+                kopirovatToolStripMenuItem.Click += new System.EventHandler(this.kopirovatToolStripMenuItem_Click);
+
                 smazatToolStripMenuItem.MergeIndex = i;
                 smazatToolStripMenuItem.Text = "Smazat";
                 smazatToolStripMenuItem.Click += new System.EventHandler(this.smazatToolStripMenuItem_Click);
 
                 c.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
                  nastaveniToolStripMenuItem,
+                 kopirovatToolStripMenuItem,
                  smazatToolStripMenuItem});
 
 
@@ -109,6 +116,23 @@ namespace Docházka
                 table.Controls.Clear();
                 vykreslitKarty();
             }
+        }
+
+        private void kopirovatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            int index = ((ToolStripMenuItem)sender).MergeIndex;
+
+            main.poleKaret.Add(Clone(main.poleKaret[index]));
+            table.Controls.Clear();
+            vykreslitKarty();
+
+        }
+
+        private Karta Clone(Karta k) {
+
+            return new Karta(main) { color = k.color, nazev = k.nazev, mesic = k.mesic, rok = k.rok, indexyOsob = new List<int>(k.indexyOsob) };
+
         }
 
         /**
