@@ -63,6 +63,8 @@
             this.comboBoxMesic.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.comboBoxMesic.FormattingEnabled = true;
             this.comboBoxMesic.Location = new System.Drawing.Point(426, 16);
+            this.comboBoxMesic.MaximumSize = new System.Drawing.Size(121, 0);
+            this.comboBoxMesic.MinimumSize = new System.Drawing.Size(121, 0);
             this.comboBoxMesic.Name = "comboBoxMesic";
             this.comboBoxMesic.Size = new System.Drawing.Size(121, 29);
             this.comboBoxMesic.TabIndex = 23;
@@ -75,6 +77,8 @@
             this.comboBoxRok.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxRok.FormattingEnabled = true;
             this.comboBoxRok.Location = new System.Drawing.Point(289, 16);
+            this.comboBoxRok.MaximumSize = new System.Drawing.Size(121, 0);
+            this.comboBoxRok.MinimumSize = new System.Drawing.Size(121, 0);
             this.comboBoxRok.Name = "comboBoxRok";
             this.comboBoxRok.Size = new System.Drawing.Size(121, 29);
             this.comboBoxRok.TabIndex = 22;
@@ -122,10 +126,9 @@
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.19973F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.80027F));
-            this.table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.table.Location = new System.Drawing.Point(0, 56);
             this.table.Name = "table";
-            this.table.Padding = new System.Windows.Forms.Padding(20);
+            this.table.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.table.Size = new System.Drawing.Size(800, 394);
@@ -136,7 +139,7 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.buttonUlozit);
-            this.panel2.Location = new System.Drawing.Point(603, 406);
+            this.panel2.Location = new System.Drawing.Point(603, 617);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(148, 36);
             this.panel2.TabIndex = 2;
@@ -161,11 +164,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 661);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.table);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Editace_Karty";
             this.Text = "DIMOS | Docházka - Editace karty";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editace_Karty_FormClosing);

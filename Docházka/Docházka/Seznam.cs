@@ -45,12 +45,13 @@ namespace Docházka
          **/
         public void vykresliTabulku() {
 
+            table.SuspendLayout();
                 for (int i = 0; i < main.Osoby.Count; i++)
                 {
 
                     addFromOsobyToTable(i);
                 }
-            
+            table.ResumeLayout();
         }
 
         /**
@@ -80,7 +81,7 @@ namespace Docházka
             tisk.TabIndex = i;
             table.Controls.Add(tisk, 3, i);
             //--- Vykreslit tlačítko smazat
-            var remove = new Button() { Text = "Smazat" };
+            Button remove = new Button() { Text = "Smazat" };
             remove.Click += new EventHandler(remove_Click);
             remove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
             remove.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -93,6 +94,7 @@ namespace Docházka
             table.Controls.Add(new Label() { Margin = new Padding(5, 9, 0, 0), Text = "" + (i+1) + ".", AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 0, i);
             //--- Vykreslení Jména
             table.Controls.Add(new Label() { Margin = new Padding(10, 9, 0, 0), Text = main.Osoby[i].jmeno + " " + main.Osoby[i].prijmeni, AutoSize = true, Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238))), ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) }, 1, i);
+
         }
 
         /**
@@ -139,13 +141,14 @@ namespace Docházka
          **/
         private void pridat_Click(object sender, EventArgs e)
         {
+            int pocet = main.Osoby.Count();
 
             Editace_osob eo = new Editace_osob("NEW", main);
             eo.seznam = this;
 
             eo.ShowDialog();
 
-            if (main.Osoby.Count != 0)
+            if (main.Osoby.Count != 0 && main.Osoby.Count() != pocet)
             {
                 labelPrazdnySeznam.Visible = main.Osoby.Count == 0 ? true : false;
                 addFromOsobyToTable(main.Osoby.Count - 1);
@@ -216,5 +219,19 @@ namespace Docházka
 
         }
 
+        private void Seznam_Resize(object sender, EventArgs e)
+        {
+            //table.Size = new System.Drawing.Size(Width + 10, Height - (panel1.Size.Height + label1.Size.Height +70 ) );
+            //table.MaximumSize = new System.Drawing.Size(Width+5, table.MaximumSize.Height);
+        }
+
+        private void Seznam_ResizeEnd(object sender, EventArgs e)
+        {
+            table.SuspendLayout();
+            table.Visible = false;
+            table.Size = new System.Drawing.Size(Width - 15, Height - (panel1.Size.Height + label1.Size.Height + 50));
+            table.Visible = true;
+            table.ResumeLayout();
+        }
     }
 }

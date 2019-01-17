@@ -75,6 +75,9 @@ namespace Docházka
             webClient.Encoding = Encoding.UTF8;
             jmeno.Text = (webClient.DownloadString("http://svatky.adresa.info/txt").Split(';'))[1];
 
+            for (int i = 0; i < 20; i++)
+                Osoby.Add(new Osoba() {jmeno = "Tester", prijmeni = "Testowitch" });
+
             timer.Start();
         }
 

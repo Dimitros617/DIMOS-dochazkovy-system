@@ -56,6 +56,14 @@ namespace Docházka
 
         }
 
+        public void ResizeTable() {
+
+            table.Location = new Point(table.Location.X, table.Location.Y + 20);
+            table.Size = new System.Drawing.Size(Width - 6, Height - (panel1.Size.Height + 70));
+            table.MaximumSize = new System.Drawing.Size(table.Size.Width, Height - (panel1.Size.Height + 70));
+
+        }
+
         /**
          * Metoda vykresluje čáry jako hranice v tabulce
          **/
@@ -85,6 +93,7 @@ namespace Docházka
 
             setComboBox();
             vykresliSeznam();
+            ResizeTable();
             Refresh();
         }
 
@@ -112,6 +121,7 @@ namespace Docházka
                 //--- Vykreslit tlačítko přidat / smazat
                 var remove = new Button() { Text = karta.indexyOsob.IndexOf(i) == -1 ? "Přidat" : "Odebrat" };
                 remove.Click += new EventHandler(change_Click);
+                remove.MouseEnter += new System.EventHandler(change_MouseEnter);
                 remove.BackColor = karta.indexyOsob.IndexOf(i) == -1 ? blue : red;
                 remove.Cursor = System.Windows.Forms.Cursors.Hand;
                 remove.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -154,6 +164,14 @@ namespace Docházka
             }
 
             Refresh();
+        }
+
+        private void change_MouseEnter(object sender, EventArgs e)
+        {
+
+            if (ModifierKeys == Keys.Control)
+                change_Click(sender, e);
+
         }
 
         private void buttonBarva_Click(object sender, EventArgs e)
@@ -224,5 +242,6 @@ namespace Docházka
         {
 
         }
+
     }
 }

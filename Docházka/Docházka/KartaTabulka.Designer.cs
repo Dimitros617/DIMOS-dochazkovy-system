@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartaTabulka));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
             this.buttonNastavit = new System.Windows.Forms.Button();
             this.buttonUlozit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelRok = new System.Windows.Forms.Label();
             this.labelMesic = new System.Windows.Forms.Label();
             this.table = new System.Windows.Forms.TableLayoutPanel();
-            this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 40);
             this.panel1.TabIndex = 0;
+            // 
+            // labelZadneVysledkyHledani
+            // 
+            this.labelZadneVysledkyHledani.AutoSize = true;
+            this.labelZadneVysledkyHledani.BackColor = System.Drawing.Color.Transparent;
+            this.labelZadneVysledkyHledani.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelZadneVysledkyHledani.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
+            this.labelZadneVysledkyHledani.Location = new System.Drawing.Point(12, 15);
+            this.labelZadneVysledkyHledani.Name = "labelZadneVysledkyHledani";
+            this.labelZadneVysledkyHledani.Size = new System.Drawing.Size(432, 23);
+            this.labelZadneVysledkyHledani.TabIndex = 22;
+            this.labelZadneVysledkyHledani.Text = "Dosud nebyly do karty přiřazeny žádné osoby";
+            this.labelZadneVysledkyHledani.Visible = false;
             // 
             // buttonNastavit
             // 
@@ -113,36 +126,25 @@
             // 
             // table
             // 
+            this.table.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.table.AutoScroll = true;
             this.table.AutoSize = true;
             this.table.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.table.ColumnCount = 1;
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 761F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 764F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.table.Dock = System.Windows.Forms.DockStyle.Top;
             this.table.Location = new System.Drawing.Point(0, 40);
+            this.table.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.table.Name = "table";
-            this.table.Padding = new System.Windows.Forms.Padding(20);
+            this.table.Padding = new System.Windows.Forms.Padding(20, 0, 20, 5);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(800, 42);
+            this.table.Size = new System.Drawing.Size(806, 7);
             this.table.TabIndex = 1;
             this.table.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.table_CellPaint);
-            // 
-            // labelZadneVysledkyHledani
-            // 
-            this.labelZadneVysledkyHledani.AutoSize = true;
-            this.labelZadneVysledkyHledani.BackColor = System.Drawing.Color.Transparent;
-            this.labelZadneVysledkyHledani.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelZadneVysledkyHledani.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
-            this.labelZadneVysledkyHledani.Location = new System.Drawing.Point(12, 15);
-            this.labelZadneVysledkyHledani.Name = "labelZadneVysledkyHledani";
-            this.labelZadneVysledkyHledani.Size = new System.Drawing.Size(432, 23);
-            this.labelZadneVysledkyHledani.TabIndex = 22;
-            this.labelZadneVysledkyHledani.Text = "Dosud nebyly do karty přiřazeny žádné osoby";
-            this.labelZadneVysledkyHledani.Visible = false;
             // 
             // KartaTabulka
             // 

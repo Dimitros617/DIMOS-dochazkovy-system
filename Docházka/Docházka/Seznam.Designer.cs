@@ -39,6 +39,8 @@
             this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.labelPrazdnySeznam = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // nastaveni
@@ -91,20 +93,21 @@
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
-            this.table.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.table.Location = new System.Drawing.Point(0, 26);
-            this.table.Margin = new System.Windows.Forms.Padding(3, 300, 3, 3);
+            this.table.Cursor = System.Windows.Forms.Cursors.Default;
+            this.table.Location = new System.Drawing.Point(0, 88);
+            this.table.Margin = new System.Windows.Forms.Padding(3, 300, 3, 20);
+            this.table.MinimumSize = new System.Drawing.Size(764, 533);
             this.table.Name = "table";
-            this.table.Padding = new System.Windows.Forms.Padding(20, 70, 20, 0);
+            this.table.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(764, 635);
+            this.table.Size = new System.Drawing.Size(764, 533);
             this.table.TabIndex = 7;
             this.table.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.table_CellPaint);
             // 
             // textBoxHledat
             // 
-            this.textBoxHledat.Location = new System.Drawing.Point(114, 47);
+            this.textBoxHledat.Location = new System.Drawing.Point(122, 22);
             this.textBoxHledat.Name = "textBoxHledat";
             this.textBoxHledat.Size = new System.Drawing.Size(178, 20);
             this.textBoxHledat.TabIndex = 8;
@@ -115,7 +118,7 @@
             this.buttonHledat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonHledat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonHledat.ForeColor = System.Drawing.Color.White;
-            this.buttonHledat.Location = new System.Drawing.Point(17, 41);
+            this.buttonHledat.Location = new System.Drawing.Point(25, 16);
             this.buttonHledat.Name = "buttonHledat";
             this.buttonHledat.Size = new System.Drawing.Size(86, 32);
             this.buttonHledat.TabIndex = 18;
@@ -151,6 +154,16 @@
             this.labelPrazdnySeznam.Text = "Seznam je prázdný";
             this.labelPrazdnySeznam.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.buttonHledat);
+            this.panel1.Controls.Add(this.textBoxHledat);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 26);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(764, 61);
+            this.panel1.TabIndex = 21;
+            // 
             // Seznam
             // 
             this.AcceptButton = this.buttonHledat;
@@ -158,10 +171,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(764, 661);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelPrazdnySeznam);
             this.Controls.Add(this.labelZadneVysledkyHledani);
-            this.Controls.Add(this.buttonHledat);
-            this.Controls.Add(this.textBoxHledat);
             this.Controls.Add(this.table);
             this.Controls.Add(this.nastaveni);
             this.Controls.Add(this.pridat);
@@ -171,6 +183,10 @@
             this.Name = "Seznam";
             this.Text = "DIMOS | Docházka - Seznam osob";
             this.Load += new System.EventHandler(this.Seznam_Load);
+            this.ResizeEnd += new System.EventHandler(this.Seznam_ResizeEnd);
+            this.Resize += new System.EventHandler(this.Seznam_Resize);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +203,6 @@
         private System.Windows.Forms.Label labelZadneVysledkyHledani;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label labelPrazdnySeznam;
+        private System.Windows.Forms.Panel panel1;
     }
 }
