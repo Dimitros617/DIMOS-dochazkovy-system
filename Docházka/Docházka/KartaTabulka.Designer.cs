@@ -37,11 +37,16 @@
             this.labelRok = new System.Windows.Forms.Label();
             this.labelMesic = new System.Windows.Forms.Label();
             this.table = new System.Windows.Forms.TableLayoutPanel();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.buttonTisk = new System.Windows.Forms.Button();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonTisk);
             this.panel1.Controls.Add(this.labelZadneVysledkyHledani);
             this.panel1.Controls.Add(this.buttonNastavit);
             this.panel1.Controls.Add(this.buttonUlozit);
@@ -73,7 +78,7 @@
             this.buttonNastavit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
             this.buttonNastavit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonNastavit.ForeColor = System.Drawing.Color.White;
-            this.buttonNastavit.Location = new System.Drawing.Point(573, 7);
+            this.buttonNastavit.Location = new System.Drawing.Point(490, 7);
             this.buttonNastavit.Name = "buttonNastavit";
             this.buttonNastavit.Size = new System.Drawing.Size(117, 32);
             this.buttonNastavit.TabIndex = 4;
@@ -134,7 +139,7 @@
             this.table.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.table.ColumnCount = 1;
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 764F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 765F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table.Location = new System.Drawing.Point(0, 40);
@@ -143,14 +148,48 @@
             this.table.Padding = new System.Windows.Forms.Padding(20, 0, 20, 5);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(806, 7);
+            this.table.Size = new System.Drawing.Size(807, 7);
             this.table.TabIndex = 1;
             this.table.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.table_CellPaint);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // buttonTisk
+            // 
+            this.buttonTisk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTisk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.buttonTisk.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonTisk.ForeColor = System.Drawing.Color.White;
+            this.buttonTisk.Location = new System.Drawing.Point(612, 7);
+            this.buttonTisk.Name = "buttonTisk";
+            this.buttonTisk.Size = new System.Drawing.Size(82, 32);
+            this.buttonTisk.TabIndex = 23;
+            this.buttonTisk.Text = "Tisk";
+            this.buttonTisk.UseVisualStyleBackColor = false;
+            this.buttonTisk.Click += new System.EventHandler(this.buttonTisk_Click);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
             // 
             // KartaTabulka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.table);
             this.Controls.Add(this.panel1);
@@ -175,5 +214,9 @@
         private System.Windows.Forms.Button buttonUlozit;
         private System.Windows.Forms.TableLayoutPanel table;
         private System.Windows.Forms.Label labelZadneVysledkyHledani;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Button buttonTisk;
+        private System.Windows.Forms.PrintDialog printDialog1;
     }
 }

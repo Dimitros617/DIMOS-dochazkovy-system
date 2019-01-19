@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FMUtils.Screenshot, Version=1.0.668.1805, Culture=neutral, PublicKeyToken=7e686a1e3bab10bf, processorArchitecture=MSIL">
+      <HintPath>..\packages\FMUtils.Screenshot.1.0.668.1805\lib\net40-Client\FMUtils.Screenshot.dll</HintPath>
+    </Reference>
+    <Reference Include="FMUtils.WinApi, Version=1.0.11.2341, Culture=neutral, PublicKeyToken=b82e41506fce6235, processorArchitecture=MSIL">
+      <HintPath>..\packages\FMUtils.WinApi.1.0.11.2341\lib\net40-Client\FMUtils.WinApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -114,6 +120,7 @@
     <EmbeddedResource Include="Seznam.resx">
       <DependentUpon>Seznam.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Image\DIMOS_LOGO_Transparent_40_procent_Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\context-bottom-right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

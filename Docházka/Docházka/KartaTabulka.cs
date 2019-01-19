@@ -23,11 +23,8 @@ namespace Docházka
 
             this.main = main;
             this.karta = karta;
-        }
 
-        private void KartaTabulka_Load(object sender, EventArgs e)
-        {
-            Location = new Point(0,0);
+            Location = new Point(0, 0);
             Width = Screen.PrimaryScreen.Bounds.Width;
             Height = Screen.PrimaryScreen.Bounds.Height;
 
@@ -36,11 +33,19 @@ namespace Docházka
             labelRok.Text = karta.rok;
             labelMesic.Text = karta.mesic;
 
+
+
+        }
+
+        private void KartaTabulka_Load(object sender, EventArgs e)
+        {
             SetDoubleBuffered(table);
+
             vykresliTabulku();
             this.WindowState = FormWindowState.Maximized;
-
             ResizeTable();
+
+
         }
 
         private void ResizeTable()
@@ -148,6 +153,7 @@ namespace Docházka
                 }
 
                 //table.Refresh();
+                UpdateCountPole();
                 table.RowStyles.Add(new RowStyle(SizeType.Absolute, 1F));
                 table.ResumeLayout();
             }
@@ -205,14 +211,16 @@ namespace Docházka
             table.Controls.Add(new Label() { // label odpracovano hodin
                 Margin = new Padding(5, 5, 0, 0),
                 AutoSize = true,
-                Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
+                Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right))),
+                Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
                 ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68))))) },
                 2, posledniRadek);
 
             table.Controls.Add(new Label(){ // label odpracovano hodin
                 Margin = new Padding(5, 5, 0, 0),
                 AutoSize = true,
-                Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
+                Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right))),
+                Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
                 ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))))},
                 2, posledniRadek+1);
 
@@ -223,14 +231,16 @@ namespace Docházka
             table.Controls.Add(new Label(){ // label odpracovano dní
                 Margin = new Padding(5, 5, 0, 0),
                 AutoSize = true,
-                Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
+                Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right))),
+                Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
                 ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))))},
                 table.ColumnCount-1, posledniRadek);
 
             table.Controls.Add(new Label(){ // label odpracovano dní přesčas
                 Margin = new Padding(5, 5, 0, 0),
                 AutoSize = true,
-                Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
+                Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right))),
+                Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
                 ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))))},
                 table.ColumnCount - 1, posledniRadek + 1);
 
@@ -278,8 +288,61 @@ namespace Docházka
                 posledniRadek = posledniRadek + 2;
         }
 
+        private void UpdateCountPole()
+        {
+
+
+
+            for (int i = 1; i < table.RowCount-1; i++)
+            {
+                int pocetHodin = 0;
+                int pocetDnu = 0;
+                for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++)
+                {
+
+                    String hodnota = table.GetControlFromPosition(j, i).Text;
+
+                    pocetDnu = hodnota.Equals("") ? pocetDnu : pocetDnu + 1;
+
+                    int index = i % 2 != 0 ? i / 2 : (i - 1) / 2;
+                    OsobniTabulka o = main.Osoby[karta.indexyOsob[index]].osobniTabulka;
+                    int dayOfWeek = (int)new DateTime(karta.getIntRok(), karta.getIntMesic(), j - 2).DayOfWeek;
+                    dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
+
+
+                    if (hodnota.Equals(""))
+                    {
+
+                    }
+                    else if (!o.Obsahuje(hodnota))
+                    {
+                        if (!o.Obsahuje(hodnota + "/" + dayOfWeek))
+                        {
+                            MessageBox.Show("Tato hodnota není obsažena v osobní tabulce Osoby");
+                            table.GetControlFromPosition(j,i).Text = "";
+                        }
+                        else
+                        {
+                            pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
+                        }
+                    }
+                    else
+                    {
+                        pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
+                    }
+
+                }
+
+                table.GetControlFromPosition(2, i).Text = pocetHodin + "";
+                table.GetControlFromPosition(table.ColumnCount - 1, i).Text = pocetDnu + "";
+            }
+
+        }
+
+
         private void pole_Leave(object sender, EventArgs e)
         {
+
             int pocetHodin = 0;
             int pocetDnu = 0;
 
@@ -384,5 +447,66 @@ namespace Docházka
             }
             Close();
         }
+
+        public void GrafikaProTisk() {
+
+            BackColor = Color.White;
+            table.MaximumSize = new Size(0, 0);
+            table.Size = new Size(table.Width, (int)table.RowStyles[0].Height * table.RowCount);
+            table.AutoScroll = false;
+            this.AutoSize = true;
+
+        }
+
+
+
+        //------------- Tisk Formuláře
+
+        Bitmap bmp;
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmp,0,0);
+        }
+
+        private void buttonTisk_Click(object sender, EventArgs e)
+        {
+
+            printDocument1.DefaultPageSettings.Landscape = true;
+            buttonNastavit.Visible = false;
+            buttonTisk.Visible = false;
+            buttonUlozit.Visible = false;
+            Graphics g = this.CreateGraphics();
+            bmp = new Bitmap(Size.Width, Size.Height, g);
+            Graphics mg = Graphics.FromImage(bmp);
+            mg.CopyFromScreen(Location.X + 10, Location.Y + 30, 0, 0, new Size(new Point(Size.Width, Size.Height - 40)));
+            bmp = new Bitmap(bmp, new Size(bmp.Width - 250, bmp.Height - 100));
+            bmp.Save(@"C:\Users\Dominik\Desktop\program_dochazka\obr.png");
+            printPreviewDialog1.ShowDialog();
+            printDialog1.ShowDialog();
+            buttonNastavit.Visible = true;
+            buttonTisk.Visible = true;
+            buttonUlozit.Visible = true;
+
+        }
+
+        public static Bitmap CaptureFormImage(Form form)
+        {
+            Bitmap image = new Bitmap(form.Width, form.Height);
+            form.DrawToBitmap(image, new Rectangle(new Point(0, 0), image.Size));
+            return image;
+        }
+
+        public static void CaptureAndSaveFormImage(Form form, string filename)
+        {
+            CaptureFormImage(form).Save(filename);
+        }
+
+
     }
 }
