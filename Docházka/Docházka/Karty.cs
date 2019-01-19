@@ -112,6 +112,15 @@ namespace Docházka
             DialogResult result = MessageBox.Show("Opravdu si přejete smazat kartu: " + main.poleKaret[index].nazev, "SMAZAT ?", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                foreach (int item in main.poleKaret[index].indexyOsob)
+                {
+                    main.Osoby[item].dochazka.RemoveAt(main.Osoby[item].karty.IndexOf(index));
+                    main.Osoby[item].karty.RemoveAll(p => p == index);
+                    for (int i = 0; i < main.Osoby[item].karty.Count; i++)
+                    {
+                        main.Osoby[item].karty[i]--;
+                    }
+                }
                 main.poleKaret.RemoveAt(index);
                 table.Controls.Clear();
                 vykreslitKarty();

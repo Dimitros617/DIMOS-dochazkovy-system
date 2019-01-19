@@ -253,7 +253,7 @@ namespace Docházka
                     Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
                     Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)))
                 };
-                t.TextChanged += new System.EventHandler(pole_TextChanged);
+                t.Leave += new System.EventHandler(pole_Leave);
                 
                 table.Controls.Add(t, j, posledniRadek);
 
@@ -268,7 +268,7 @@ namespace Docházka
                     Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238))),
                     Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)))
                 };
-                t2.TextChanged += new System.EventHandler(pole_TextChanged);
+                t2.Leave += new System.EventHandler(pole_Leave);
 
                 table.Controls.Add(t2, j, posledniRadek+1);
 
@@ -278,7 +278,7 @@ namespace Docházka
                 posledniRadek = posledniRadek + 2;
         }
 
-        private void pole_TextChanged(object sender, EventArgs e)
+        private void pole_Leave(object sender, EventArgs e)
         {
             int pocetHodin = 0;
             int pocetDnu = 0;
@@ -289,7 +289,7 @@ namespace Docházka
                 String hodnota = table.GetControlFromPosition(j, row).Text;
                 pocetDnu = hodnota.Equals("")? pocetDnu : pocetDnu +1;
 
-                int index = row % 2 == 0 ? row / 2 : (row - 1) / 2;
+                int index = row % 2 != 0 ? row / 2 : (row - 1) / 2;
                 OsobniTabulka o = main.Osoby[karta.indexyOsob[index]].osobniTabulka;
                 int dayOfWeek = (int)new DateTime(karta.getIntRok(), karta.getIntMesic(), j - 2).DayOfWeek;
                 dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
