@@ -1,8 +1,11 @@
-﻿using System;
+﻿using FMUtils.Screenshot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -463,6 +466,8 @@ namespace Docházka
         //------------- Tisk Formuláře
 
         Bitmap bmp;
+        String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
 
         private void printPreviewDialog1_Load(object sender, EventArgs e)
         {
@@ -474,6 +479,22 @@ namespace Docházka
             e.Graphics.DrawImage(bmp,0,0);
         }
 
+        public void ScreenShot(int i) {
+
+            System.IO.Directory.CreateDirectory(path + "\\DIMOS");
+            try
+            {
+                new ComposedScreenshot(new Rectangle(0, 30, Size.Width, panel1.Size.Height + table.Size.Height + 15)).ComposedScreenshotImage.Save(path + "\\DIMOS\\karta.png", ImageFormat.Png);
+            }
+            catch
+            {
+                MessageBox.Show("Došlo k problému při tisku");
+            }
+
+        }
+
+        PrintDocument pd;
+
         private void buttonTisk_Click(object sender, EventArgs e)
         {
 
@@ -481,30 +502,53 @@ namespace Docházka
             buttonNastavit.Visible = false;
             buttonTisk.Visible = false;
             buttonUlozit.Visible = false;
-            Graphics g = this.CreateGraphics();
-            bmp = new Bitmap(Size.Width, Size.Height, g);
-            Graphics mg = Graphics.FromImage(bmp);
-            mg.CopyFromScreen(Location.X + 10, Location.Y + 30, 0, 0, new Size(new Point(Size.Width, Size.Height - 40)));
-            bmp = new Bitmap(bmp, new Size(bmp.Width - 250, bmp.Height - 100));
-            bmp.Save(@"C:\Users\Dominik\Desktop\program_dochazka\obr.png");
-            printPreviewDialog1.ShowDialog();
-            printDialog1.ShowDialog();
+
+
+            pd = new PrintDocument();
+
+            Margins margins = new Margins(5, 5, 5, 5);
+            pd.DefaultPageSettings.Margins = margins;
+            ScreenShot(0);
+
+            pd.PrintPage += PrintPage;
+            PrintDialog printDialog1 = new PrintDialog();
+            printDialog1.Document = pd;
+            DialogResult result = printDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                pd.Print();
+            }
+
             buttonNastavit.Visible = true;
             buttonTisk.Visible = true;
             buttonUlozit.Visible = true;
 
         }
 
-        public static Bitmap CaptureFormImage(Form form)
+        private void PrintPage(object o, PrintPageEventArgs e)
         {
-            Bitmap image = new Bitmap(form.Width, form.Height);
-            form.DrawToBitmap(image, new Rectangle(new Point(0, 0), image.Size));
-            return image;
-        }
+            try
+            {
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(path + "\\DIMOS\\karta.png");
+                    Rectangle m = e.MarginBounds;
 
-        public static void CaptureAndSaveFormImage(Form form, string filename)
-        {
-            CaptureFormImage(form).Save(filename);
+                    if ((double)img.Width / (double)img.Height > (double)m.Width / (double)m.Height) // obrazek je širší
+                    {
+                        pd.DefaultPageSettings.Landscape = true;
+                        m.Height = (int)((double)img.Height / (double)img.Width * (double)m.Width);
+                    }
+                    else
+                    {
+                        pd.DefaultPageSettings.Landscape = false;
+                        m.Width = (int)((double)img.Width / (double)img.Height * (double)m.Height);
+                    }
+                    e.Graphics.DrawImage(img, m);
+                
+            }
+            catch
+            {
+
+            }
         }
 
 
