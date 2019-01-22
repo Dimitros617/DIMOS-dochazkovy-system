@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace Docházka
     public partial class Karty : Form
     {
         public Main main;
-        ContextMenuStrip ContextMenu;
+        List<int> tiskovaFronta = new List<int>();
+
 
         public Karty(Main main)
         {
@@ -53,6 +55,7 @@ namespace Docházka
 
                 ToolStripMenuItem nastaveniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                 ToolStripMenuItem kopirovatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+                ToolStripMenuItem tisknoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                 ToolStripMenuItem smazatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 
                 nastaveniToolStripMenuItem.MergeIndex = i;
@@ -63,6 +66,10 @@ namespace Docházka
                 kopirovatToolStripMenuItem.Text = "Duplikovat";
                 kopirovatToolStripMenuItem.Click += new System.EventHandler(this.kopirovatToolStripMenuItem_Click);
 
+                tisknoutToolStripMenuItem.MergeIndex = i;
+                tisknoutToolStripMenuItem.Text = "Přidat k tisku";
+                tisknoutToolStripMenuItem.Click += new System.EventHandler(this.pridatTiskToolStripMenuItem_Click);
+
                 smazatToolStripMenuItem.MergeIndex = i;
                 smazatToolStripMenuItem.Text = "Smazat";
                 smazatToolStripMenuItem.Click += new System.EventHandler(this.smazatToolStripMenuItem_Click);
@@ -70,6 +77,7 @@ namespace Docházka
                 c.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
                  nastaveniToolStripMenuItem,
                  kopirovatToolStripMenuItem,
+                 tisknoutToolStripMenuItem,
                  smazatToolStripMenuItem});
 
 
@@ -104,6 +112,15 @@ namespace Docházka
             Refresh();
         }
 
+        private void pridatTiskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            int index = ((ToolStripMenuItem)sender).MergeIndex;
+            tiskovaFronta.Add(index);
+            buttonTisk.Text = "Vytisknout " + tiskovaFronta.Count + (tiskovaFronta.Count == 1 ? " kartu" : tiskovaFronta.Count > 1 && tiskovaFronta.Count < 5  ? " karty" : " karet");
+
+        }
+
         private void smazatToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -112,15 +129,32 @@ namespace Docházka
             DialogResult result = MessageBox.Show("Opravdu si přejete smazat kartu: " + main.poleKaret[index].nazev, "SMAZAT ?", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                foreach (int item in main.poleKaret[index].indexyOsob)
+                for (int item = 0; item < main.Osoby.Count; item++)
                 {
-                    main.Osoby[item].dochazka.RemoveAt(main.Osoby[item].karty.IndexOf(index));
-                    main.Osoby[item].karty.RemoveAll(p => p == index);
+                    if (main.Osoby[item].karty.IndexOf(index) != -1)
+                    {
+                        main.Osoby[item].dochazka.RemoveAt(main.Osoby[item].karty.IndexOf(index));
+                        main.Osoby[item].karty.RemoveAll(p => p == index);
+                    }
+
                     for (int i = 0; i < main.Osoby[item].karty.Count; i++)
                     {
-                        main.Osoby[item].karty[i]--;
+                        if (main.Osoby[item].karty[i] > index)
+                            main.Osoby[item].karty[i] = main.Osoby[item].karty[i] - 1;
                     }
                 }
+
+                if (File.Exists(main.path + "\\DIMOS\\" + index + ".png"))
+                    System.IO.File.Delete(main.path + "\\DIMOS\\" + index + ".png");
+
+                for (int i = index + 1; i < main.poleKaret.Count; i++)
+                {
+                    if (File.Exists(main.path + "\\DIMOS\\" + i + ".png"))
+                    {
+                        System.IO.File.Move(main.path + "\\DIMOS\\" + i + ".png", main.path + "\\DIMOS\\" + (i-1) + ".png");
+                    }
+                }
+
                 main.poleKaret.RemoveAt(index);
                 table.Controls.Clear();
                 vykreslitKarty();
@@ -168,9 +202,22 @@ namespace Docházka
 
         }
 
+        private void buttonTisk_Click(object sender, EventArgs e)
+        {
+            if (tiskovaFronta.Count == 0)
+            {
+                MessageBox.Show("Vyberte karty tak, že na některou kliknete pravým tlačítkem myši a kliknete na Přidat k tisku");
+            }
+            else
+            {
 
+            }
+        }
 
-
-
+        private void vymazatTisknovouFrontuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tiskovaFronta = new List<int>();
+            buttonTisk.Text = "Vytisknout 0 karet";
+        }
     }
 }

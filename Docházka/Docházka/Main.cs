@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
@@ -18,9 +20,13 @@ namespace Docházka
         public List<Karta> poleKaret;
         public OsobniTabulka UniversalniTabulka;
 
+        public String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        public Random random;
+
         public Main()
         {
             InitializeComponent();
+            random = new Random();
             UniversalniTabulka = new OsobniTabulka();
             Osoby = new List<Osoba>();
             poleKaret = new List<Karta>();
@@ -76,9 +82,22 @@ namespace Docházka
             jmeno.Text = (webClient.DownloadString("http://svatky.adresa.info/txt").Split(';'))[1];
 
             for (int i = 0; i < 20; i++)
-                Osoby.Add(new Osoba() {jmeno = "Tester", prijmeni = "Testowitch" });
+                Osoby.Add(new Osoba() {jmeno = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())), prijmeni = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())) });
 
             timer.Start();
+        }
+
+        string RandomString(int length)
+        {
+
+            string characters = "abcdefghijklmnopqrstuvwxyz";
+            StringBuilder result = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                int r = random.Next(characters.Length);
+                result.Append(characters[r]);
+            }
+            return result.ToString();
         }
 
 

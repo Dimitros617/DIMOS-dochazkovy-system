@@ -36,17 +36,20 @@ namespace Docházka
             labelRok.Text = karta.rok;
             labelMesic.Text = karta.mesic;
 
+            this.WindowState = FormWindowState.Maximized;
+            SetDoubleBuffered(table);
 
+            vykresliTabulku();
 
         }
 
         private void KartaTabulka_Load(object sender, EventArgs e)
         {
-            SetDoubleBuffered(table);
 
-            vykresliTabulku();
-            this.WindowState = FormWindowState.Maximized;
-            ResizeTable();
+
+
+
+            //ResizeTable();
 
 
         }
@@ -427,6 +430,7 @@ namespace Docházka
 
         private void buttonUlozit_Click(object sender, EventArgs e)
         {
+            ScreenShot();
             posledniRadek = 1;
             for (int i = 0; i < karta.indexyOsob.Count; i++)
             {
@@ -451,46 +455,34 @@ namespace Docházka
             Close();
         }
 
-        public void GrafikaProTisk() {
-
-            BackColor = Color.White;
-            table.MaximumSize = new Size(0, 0);
-            table.Size = new Size(table.Width, (int)table.RowStyles[0].Height * table.RowCount);
-            table.AutoScroll = false;
-            this.AutoSize = true;
-
-        }
-
-
 
         //------------- Tisk Formuláře
 
-        Bitmap bmp;
-        String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-
-        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        public void ScreenShot()
         {
 
-        }
+            ScreenShot(main.poleKaret.IndexOf(karta));
 
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(bmp,0,0);
         }
 
         public void ScreenShot(int i) {
 
-            System.IO.Directory.CreateDirectory(path + "\\DIMOS");
+            buttonNastavit.Visible = false;
+            buttonTisk.Visible = false;
+            buttonUlozit.Visible = false;
+            System.IO.Directory.CreateDirectory(main.path + "\\DIMOS");
             try
             {
-                new ComposedScreenshot(new Rectangle(0, 30, Size.Width, panel1.Size.Height + table.Size.Height + 15)).ComposedScreenshotImage.Save(path + "\\DIMOS\\karta.png", ImageFormat.Png);
+                new ComposedScreenshot(new Rectangle(0, 30, Size.Width, panel1.Size.Height + table.Size.Height + 15)).ComposedScreenshotImage.Save(main.path + "\\DIMOS\\" + i + ".png", ImageFormat.Png);
             }
             catch
             {
-                MessageBox.Show("Došlo k problému při tisku");
+                MessageBox.Show("Došlo k problému při vytovážení tiskové kopie");
             }
-
+            buttonNastavit.Visible = true;
+            buttonTisk.Visible = true;
+            buttonUlozit.Visible = true;
         }
 
         PrintDocument pd;
@@ -499,10 +491,6 @@ namespace Docházka
         {
 
             printDocument1.DefaultPageSettings.Landscape = true;
-            buttonNastavit.Visible = false;
-            buttonTisk.Visible = false;
-            buttonUlozit.Visible = false;
-
 
             pd = new PrintDocument();
 
@@ -519,17 +507,13 @@ namespace Docházka
                 pd.Print();
             }
 
-            buttonNastavit.Visible = true;
-            buttonTisk.Visible = true;
-            buttonUlozit.Visible = true;
-
         }
 
         private void PrintPage(object o, PrintPageEventArgs e)
         {
             try
             {
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(path + "\\DIMOS\\karta.png");
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(main.path + "\\DIMOS\\karta.png");
                     Rectangle m = e.MarginBounds;
 
                     if ((double)img.Width / (double)img.Height > (double)m.Width / (double)m.Height) // obrazek je širší
