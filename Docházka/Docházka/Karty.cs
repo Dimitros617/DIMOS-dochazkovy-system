@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -116,9 +117,19 @@ namespace Docházka
         {
 
             int index = ((ToolStripMenuItem)sender).MergeIndex;
-            tiskovaFronta.Add(index);
-            buttonTisk.Text = "Vytisknout " + tiskovaFronta.Count + (tiskovaFronta.Count == 1 ? " kartu" : tiskovaFronta.Count > 1 && tiskovaFronta.Count < 5  ? " karty" : " karet");
+            if (tiskovaFronta.IndexOf(index) == -1)
+            {
+                ((ToolStripMenuItem)sender).Text = "Odebrat z tisku";
+                tiskovaFronta.Add(index);
+                buttonTisk.Text = "Vytisknout " + tiskovaFronta.Count + (tiskovaFronta.Count == 1 ? " kartu" : tiskovaFronta.Count > 1 && tiskovaFronta.Count < 5 ? " karty" : " karet");
+            }
+            else
+            {
+                ((ToolStripMenuItem)sender).Text = "Přidat k tisku";
+                tiskovaFronta.RemoveAll(x => x == index);
+                buttonTisk.Text = "Vytisknout " + tiskovaFronta.Count + (tiskovaFronta.Count == 1 ? " kartu" : tiskovaFronta.Count > 1 && tiskovaFronta.Count < 5 ? " karty" : " karet");
 
+            }
         }
 
         private void smazatToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,6 +213,8 @@ namespace Docházka
 
         }
 
+        PrintDocument pd;
+
         private void buttonTisk_Click(object sender, EventArgs e)
         {
             if (tiskovaFronta.Count == 0)
@@ -210,9 +223,91 @@ namespace Docházka
             }
             else
             {
+                String jpg3 = main.path + "\\DIMOS\\tisk.png";
+                int sirka = 0;
+                int vyska = 0;
+                List<Image> obrazky = new List<Image>();
+
+                for (int i = 0; i < tiskovaFronta.Count; i++)
+                {
+                    if (File.Exists(main.path + "\\DIMOS\\" + tiskovaFronta[i] + ".png"))
+                    {
+                        obrazky.Add(Image.FromFile(main.path + "\\DIMOS\\" + tiskovaFronta[i] + ".png"));
+                        sirka = obrazky[obrazky.Count - 1].Width;
+                        vyska = vyska + obrazky[obrazky.Count - 1].Height;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Není vytvořena tisková grafika pro kartu " + main.poleKaret[i].nazev + " Otevřete tuto kartu a uložte ji.");
+                    }
+                }
+
+
+
+                    Bitmap img3 = new Bitmap(sirka, vyska);
+                    Graphics g = Graphics.FromImage(img3);
+
+                    Point p = new Point(0, 0);
+                    g.Clear(Color.White);
+                    for (int j = 0; j < obrazky.Count; j++)
+                    {
+                        g.DrawImage(obrazky[j], p);
+                        p = new Point(0, p.Y + obrazky[j].Height);
+                    }
+
+
+                    g.Dispose();
+
+                    img3.Save(jpg3, System.Drawing.Imaging.ImageFormat.Png);
+                    img3.Dispose();
+
+
+
+                pd = new PrintDocument();
+
+                pd.DefaultPageSettings.Landscape = true;
+
+                Margins margins = new Margins(5, 5, 5, 5);
+                pd.DefaultPageSettings.Margins = margins;
+
+                pd.PrintPage += PrintPage;
+                PrintDialog printDialog1 = new PrintDialog();
+                printDialog1.Document = pd;
+
+                DialogResult result = printDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    pd.Print();
+                }
+            }
+        }
+
+        private void PrintPage(object o, PrintPageEventArgs e)
+        {
+            try
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(main.path + "\\DIMOS\\tisk.png");
+                Rectangle m = e.MarginBounds;
+
+                if ((double)img.Width / (double)img.Height > (double)m.Width / (double)m.Height) // obrazek je širší
+                {
+                    pd.DefaultPageSettings.Landscape = true;
+                    m.Height = (int)((double)img.Height / (double)img.Width * (double)m.Width);
+                }
+                else
+                {
+                    pd.DefaultPageSettings.Landscape = false;
+                    m.Width = (int)((double)img.Width / (double)img.Height * (double)m.Height);
+                }
+                e.Graphics.DrawImage(img, m);
+
+            }
+            catch
+            {
 
             }
         }
+
 
         private void vymazatTisknovouFrontuToolStripMenuItem_Click(object sender, EventArgs e)
         {

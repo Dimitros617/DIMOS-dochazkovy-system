@@ -32,12 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Karty));
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonTisk = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.vymazatTisknovouFrontuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
             this.buttonPridatKartu = new System.Windows.Forms.Button();
             this.table = new System.Windows.Forms.TableLayoutPanel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.vymazatTisknovouFrontuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,20 @@
             this.toolTip.SetToolTip(this.buttonTisk, "Kliknutím přidáte novou kartu");
             this.buttonTisk.UseVisualStyleBackColor = false;
             this.buttonTisk.Click += new System.EventHandler(this.buttonTisk_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vymazatTisknovouFrontuToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 26);
+            // 
+            // vymazatTisknovouFrontuToolStripMenuItem
+            // 
+            this.vymazatTisknovouFrontuToolStripMenuItem.Name = "vymazatTisknovouFrontuToolStripMenuItem";
+            this.vymazatTisknovouFrontuToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.vymazatTisknovouFrontuToolStripMenuItem.Text = "Vymazat tisknovou frontu";
+            this.vymazatTisknovouFrontuToolStripMenuItem.Click += new System.EventHandler(this.vymazatTisknovouFrontuToolStripMenuItem_Click);
             // 
             // labelZadneVysledkyHledani
             // 
@@ -117,19 +132,15 @@
             this.table.Size = new System.Drawing.Size(834, 450);
             this.table.TabIndex = 0;
             // 
-            // contextMenuStrip1
+            // printPreviewDialog
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.vymazatTisknovouFrontuToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 48);
-            // 
-            // vymazatTisknovouFrontuToolStripMenuItem
-            // 
-            this.vymazatTisknovouFrontuToolStripMenuItem.Name = "vymazatTisknovouFrontuToolStripMenuItem";
-            this.vymazatTisknovouFrontuToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.vymazatTisknovouFrontuToolStripMenuItem.Text = "Vymazat tisknovou frontu";
-            this.vymazatTisknovouFrontuToolStripMenuItem.Click += new System.EventHandler(this.vymazatTisknovouFrontuToolStripMenuItem_Click);
+            this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog.Enabled = true;
+            this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
+            this.printPreviewDialog.Name = "printPreviewDialog";
+            this.printPreviewDialog.Visible = false;
             // 
             // Karty
             // 
@@ -159,5 +170,6 @@
         private System.Windows.Forms.Button buttonTisk;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem vymazatTisknovouFrontuToolStripMenuItem;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
     }
 }

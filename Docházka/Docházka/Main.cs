@@ -66,7 +66,7 @@ namespace Docházka
 
         /**
          * 
-         * Metoda Nastaví čas jméno svátku dnes a datum
+         * Metoda Nastaví čas jméno svátku dnes, a datum
          * vykreslí okno ve středu obrazovky
          **/
         private void Main_Load(object sender, EventArgs e)
@@ -86,6 +86,7 @@ namespace Docházka
 
             timer.Start();
         }
+
 
         string RandomString(int length)
         {
