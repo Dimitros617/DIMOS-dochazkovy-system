@@ -114,6 +114,9 @@ namespace Docházka
         private void tisk_Click(object sender, EventArgs e)
         {
             int index = ((Button)sender).TabIndex;
+
+
+
             //TODO ------------------------------------------------------------------------------ TODO
         }
         
@@ -184,7 +187,7 @@ namespace Docházka
         /**
          * 
          * Metoda prohledá jména a příjmení všech osob v listu Osoby v Mainu a pokud jméno.
-         * Pokud alespoň část jeména a příjmení obsahuje tring v textboduHledat zobrazí se tato osoba v seznamu
+         * Pokud alespoň část jeména a příjmení obsahuje string v textboduHledat zobrazí se tato osoba v seznamu
          * Všechny ostatní osoby jsou skryty 
          * Pokud je TextBox prázdný po vyhledání se zobrazí všechny osoby v listu
          **/

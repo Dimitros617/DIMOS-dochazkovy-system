@@ -273,6 +273,9 @@ namespace Docházka
                 pd.PrintPage += PrintPage;
                 PrintDialog printDialog1 = new PrintDialog();
                 printDialog1.Document = pd;
+               
+
+
 
                 DialogResult result = printDialog1.ShowDialog();
                 if (result == DialogResult.OK)

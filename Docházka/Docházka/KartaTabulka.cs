@@ -48,7 +48,7 @@ namespace Docházka
 
 
 
-
+            labelNazevKarty.Text = karta.nazev;
             //ResizeTable();
 
 
@@ -301,22 +301,64 @@ namespace Docházka
 
             for (int i = 1; i < table.RowCount-1; i++)
             {
-                int pocetHodin = 0;
+                double pocetHodin = 0;
                 int pocetDnu = 0;
                 for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++)
                 {
 
                     String hodnota = table.GetControlFromPosition(j, i).Text;
 
-                    pocetDnu = hodnota.Equals("") ? pocetDnu : pocetDnu + 1;
+
 
                     int index = i % 2 != 0 ? i / 2 : (i - 1) / 2;
                     OsobniTabulka o = main.Osoby[karta.indexyOsob[index]].osobniTabulka;
                     int dayOfWeek = (int)new DateTime(karta.getIntRok(), karta.getIntMesic(), j - 2).DayOfWeek;
                     dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
 
+                    // Pocet odpracovanych dni
+                    double pocethod = 0;
+                    if (i % 2 == 0)
+                    {
+                        pocetDnu = hodnota.Equals("") ? pocetDnu : pocetDnu + 1;
+                    }
+                    else if (hodnota.Equals(""))
+                    {
 
-                    if (hodnota.Equals(""))
+                    }
+                    else if (!o.Obsahuje(hodnota))
+                    {
+
+                        if (!o.Obsahuje(hodnota + "/" + dayOfWeek))
+                        {
+                            MessageBox.Show("Tato hodnota není obsažena v osobní tabulce Osoby");
+                            pocetDnu--;
+                        }
+                        else
+                        {
+                            pocethod = Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
+                            pocetDnu = pocethod == 0 ? pocetDnu : pocetDnu + 1;
+                        }
+                    }
+                    else
+                    {
+                        pocethod = Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
+                        pocetDnu = pocethod == 0 ? pocetDnu : pocetDnu + 1;
+                    }
+
+                    //NAstaveni poctu hodin odpracovanych
+
+                    if (i % 2 == 0)
+                    {
+                        try
+                        {
+                            pocetHodin = hodnota.Equals("") ? pocetHodin : pocetHodin + Double.Parse(hodnota);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Zadávejte pouze číselné hodnoty");
+                        }
+                    }
+                    else if (hodnota.Equals(""))
                     {
 
                     }
@@ -325,16 +367,16 @@ namespace Docházka
                         if (!o.Obsahuje(hodnota + "/" + dayOfWeek))
                         {
                             MessageBox.Show("Tato hodnota není obsažena v osobní tabulce Osoby");
-                            table.GetControlFromPosition(j,i).Text = "";
+                            pocetDnu--;
                         }
                         else
                         {
-                            pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
+                            pocetHodin = pocetHodin + Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
                         }
                     }
                     else
                     {
-                        pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
+                        pocetHodin = pocetHodin + Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
                     }
 
                 }
@@ -349,14 +391,15 @@ namespace Docházka
         private void pole_Leave(object sender, EventArgs e)
         {
 
-            int pocetHodin = 0;
+            double pocetHodin = 0;
             int pocetDnu = 0;
 
             for (int j = 3; j < karta.getPocetDnuVMesici() + 3; j++)
             {
                 int row = table.GetPositionFromControl(((TextBox)sender)).Row;
                 String hodnota = table.GetControlFromPosition(j, row).Text;
-                pocetDnu = hodnota.Equals("")? pocetDnu : pocetDnu +1;
+
+
 
                 int index = row % 2 != 0 ? row / 2 : (row - 1) / 2;
                 OsobniTabulka o = main.Osoby[karta.indexyOsob[index]].osobniTabulka;
@@ -364,7 +407,50 @@ namespace Docházka
                 dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
 
 
-                if (hodnota.Equals(""))
+                // vypocet počtu dnů pro pracovní dobu a přesčasy
+                double pocethod = 0;
+                if (row % 2 == 0)
+                {
+                    pocetDnu = hodnota.Equals("") ? pocetDnu : pocetDnu + 1;
+                }
+                else if (hodnota.Equals(""))
+                {
+
+                }
+                else if (!o.Obsahuje(hodnota))
+                {
+                   
+                    if (!o.Obsahuje(hodnota + "/" + dayOfWeek))
+                    {
+                        MessageBox.Show("Tato hodnota není obsažena v osobní tabulce Osoby");
+                        ((TextBox)sender).Text = "";
+                        pocetDnu--;
+                    }
+                    else
+                    {
+                        pocethod = Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
+                        pocetDnu = pocethod == 0 ? pocetDnu : pocetDnu+1;
+                    }
+                }
+                else
+                {
+                    pocethod = Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
+                    pocetDnu = pocethod == 0 ? pocetDnu : pocetDnu+1;
+                }
+
+
+                // vypocet počtu hodin pro pracovní dobu a přesčasy
+                if (row % 2 == 0)
+                {
+                    try
+                    {
+                        pocetHodin = hodnota.Equals("") ? pocetHodin : pocetHodin + Double.Parse(hodnota);
+                    }
+                    catch {
+                        MessageBox.Show("Zadávejte pouze číselné hodnoty");
+                    }
+                }
+                else if (hodnota.Equals(""))
                 {
                     
                 }
@@ -374,15 +460,16 @@ namespace Docházka
                     {
                         MessageBox.Show("Tato hodnota není obsažena v osobní tabulce Osoby");
                         ((TextBox)sender).Text = "";
+                        pocetDnu--;
                     }
                     else
                     {
-                        pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
+                        pocetHodin = pocetHodin + Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota + "/" + dayOfWeek)][0]);
                     }
                 }
                 else
                 {
-                    pocetHodin = pocetHodin + Int32.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
+                    pocetHodin = pocetHodin + Double.Parse(o.Tabulka[o.HashList.IndexOf(hodnota.ToUpper())][0]);
                 }
 
             }
@@ -399,7 +486,7 @@ namespace Docházka
 
             table.Controls.Clear();
             vykresliTabulku();
-            
+            labelNazevKarty.Text = karta.nazev;
         }
 
         public static void SetDoubleBuffered(System.Windows.Forms.Control c)
@@ -471,6 +558,8 @@ namespace Docházka
             buttonNastavit.Visible = false;
             buttonTisk.Visible = false;
             buttonUlozit.Visible = false;
+
+            labelNazevKarty.Visible = true;
             System.IO.Directory.CreateDirectory(main.path + "\\DIMOS");
             try
             {
@@ -478,7 +567,7 @@ namespace Docházka
             }
             catch
             {
-                MessageBox.Show("Došlo k problému při vytovážení tiskové kopie");
+                MessageBox.Show("Došlo k problému při vytváření tiskové kopie, zavřete a znovu otevřete kartu");
             }
             buttonNastavit.Visible = true;
             buttonTisk.Visible = true;
@@ -489,6 +578,7 @@ namespace Docházka
 
         private void buttonTisk_Click(object sender, EventArgs e)
         {
+            buttonNastavit.Focus();
 
             printDocument1.DefaultPageSettings.Landscape = true;
 
@@ -496,14 +586,25 @@ namespace Docházka
 
             Margins margins = new Margins(5, 5, 5, 5);
             pd.DefaultPageSettings.Margins = margins;
-            ScreenShot(0);
+            ScreenShot();
 
             pd.PrintPage += PrintPage;
             PrintDialog printDialog1 = new PrintDialog();
             printDialog1.Document = pd;
+
+            Image img = Image.FromFile(main.path + "\\DIMOS\\" + main.poleKaret.IndexOf(karta) + ".png");
+
+            if ((double)img.Width > (double)img.Height) // obrazek je širší
+                pd.DefaultPageSettings.Landscape = true;
+            else
+                pd.DefaultPageSettings.Landscape = false;
+           
+
+
             DialogResult result = printDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
+              
                 pd.Print();
             }
 
@@ -513,7 +614,7 @@ namespace Docházka
         {
             try
             {
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(main.path + "\\DIMOS\\karta.png");
+                    Image img = Image.FromFile(main.path + "\\DIMOS\\" + main.poleKaret.IndexOf(karta) + ".png");
                     Rectangle m = e.MarginBounds;
 
                     if ((double)img.Width / (double)img.Height > (double)m.Width / (double)m.Height) // obrazek je širší

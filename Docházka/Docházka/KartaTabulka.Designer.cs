@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartaTabulka));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonTisk = new System.Windows.Forms.Button();
             this.labelZadneVysledkyHledani = new System.Windows.Forms.Label();
             this.buttonNastavit = new System.Windows.Forms.Button();
             this.buttonUlozit = new System.Windows.Forms.Button();
@@ -39,13 +40,14 @@
             this.table = new System.Windows.Forms.TableLayoutPanel();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.buttonTisk = new System.Windows.Forms.Button();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.labelNazevKarty = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelNazevKarty);
             this.panel1.Controls.Add(this.buttonTisk);
             this.panel1.Controls.Add(this.labelZadneVysledkyHledani);
             this.panel1.Controls.Add(this.buttonNastavit);
@@ -58,6 +60,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 40);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonTisk
+            // 
+            this.buttonTisk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTisk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.buttonTisk.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonTisk.ForeColor = System.Drawing.Color.White;
+            this.buttonTisk.Location = new System.Drawing.Point(612, 7);
+            this.buttonTisk.Name = "buttonTisk";
+            this.buttonTisk.Size = new System.Drawing.Size(82, 32);
+            this.buttonTisk.TabIndex = 23;
+            this.buttonTisk.Text = "Tisk";
+            this.buttonTisk.UseVisualStyleBackColor = false;
+            this.buttonTisk.Click += new System.EventHandler(this.buttonTisk_Click);
             // 
             // labelZadneVysledkyHledani
             // 
@@ -139,7 +155,7 @@
             this.table.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.table.ColumnCount = 1;
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 765F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 766F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.table.Location = new System.Drawing.Point(0, 40);
@@ -148,7 +164,7 @@
             this.table.Padding = new System.Windows.Forms.Padding(20, 0, 20, 5);
             this.table.RowCount = 1;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table.Size = new System.Drawing.Size(807, 7);
+            this.table.Size = new System.Drawing.Size(808, 7);
             this.table.TabIndex = 1;
             this.table.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.table_CellPaint);
             // 
@@ -163,23 +179,20 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
-            // buttonTisk
-            // 
-            this.buttonTisk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTisk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
-            this.buttonTisk.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonTisk.ForeColor = System.Drawing.Color.White;
-            this.buttonTisk.Location = new System.Drawing.Point(612, 7);
-            this.buttonTisk.Name = "buttonTisk";
-            this.buttonTisk.Size = new System.Drawing.Size(82, 32);
-            this.buttonTisk.TabIndex = 23;
-            this.buttonTisk.Text = "Tisk";
-            this.buttonTisk.UseVisualStyleBackColor = false;
-            this.buttonTisk.Click += new System.EventHandler(this.buttonTisk_Click);
-            // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
+            // 
+            // labelNazevKarty
+            // 
+            this.labelNazevKarty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNazevKarty.AutoSize = true;
+            this.labelNazevKarty.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelNazevKarty.Location = new System.Drawing.Point(342, 18);
+            this.labelNazevKarty.Name = "labelNazevKarty";
+            this.labelNazevKarty.Size = new System.Drawing.Size(137, 19);
+            this.labelNazevKarty.TabIndex = 24;
+            this.labelNazevKarty.Text = "DOCH - 1.Stupeň";
             // 
             // KartaTabulka
             // 
@@ -214,5 +227,6 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.Button buttonTisk;
         private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.Label labelNazevKarty;
     }
 }

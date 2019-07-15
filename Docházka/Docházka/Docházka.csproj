@@ -38,6 +38,9 @@
     <Reference Include="FMUtils.WinApi, Version=1.0.11.2341, Culture=neutral, PublicKeyToken=b82e41506fce6235, processorArchitecture=MSIL">
       <HintPath>..\packages\FMUtils.WinApi.1.0.11.2341\lib\net40-Client\FMUtils.WinApi.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +65,12 @@
     </Compile>
     <Compile Include="Editace_osob.Designer.cs">
       <DependentUpon>Editace_osob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vyber_karet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vyber_karet.Designer.cs">
+      <DependentUpon>Vyber_karet.cs</DependentUpon>
     </Compile>
     <Compile Include="Karta.cs" />
     <Compile Include="KartaTabulka.cs">
@@ -102,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editace_osob.resx">
       <DependentUpon>Editace_osob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vyber_karet.resx">
+      <DependentUpon>Vyber_karet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KartaTabulka.resx">
       <DependentUpon>KartaTabulka.cs</DependentUpon>

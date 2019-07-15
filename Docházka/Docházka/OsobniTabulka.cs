@@ -84,8 +84,8 @@ namespace Docházka
             setLine("D","0", "D", "D", "D", "D");
             setLine("N","0", "N", "N", "N", "N");
             setLine("OČR","0", "OČR", "OČR", "OČR", "OČR");
-            setLine("ST","0", "ST", "ST", "ST", "ST");
-            setLine("SV","8", "SV", "SV", "SV", "SV");
+            setLine("ST","8", "ST", "ST", "ST", "ST");
+            setLine("SV","0", "SV", "SV", "SV", "SV");
             //------------------------------------------------------
             setLine("8/1", "8", "7:00", "12:30", "13:00", "15:30");
             setLine("8/2", "8", "7:00", "12:30", "13:00", "15:30");
