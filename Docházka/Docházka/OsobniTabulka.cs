@@ -70,6 +70,44 @@ namespace Docházka
 
         }
 
+        public string getDecodedString(String s, int index, int day) {
+
+            int i = HashList.IndexOf(s.ToUpper());
+            if (i == -1) {
+                i = HashList.IndexOf(s.ToUpper() + "/" + day);
+            }
+            string a = Tabulka[i][index];
+
+            return a;
+        }
+
+        public String getDecodedPocetHodin(String s)
+        {
+
+            int i = HashList.IndexOf(s.ToUpper());
+            if (i == -1)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    i = HashList.IndexOf(s.ToUpper() + "/" + j);
+                    if (i >= 0) break;
+                }
+                
+            }
+            if (i != -1)
+            {
+                return Tabulka[i][0];
+            }
+            else
+            {
+                return 0 + "";
+            }
+
+
+            
+
+        }
+
         /**
          * Metoda naplní tabulku továrníma datama
          **/

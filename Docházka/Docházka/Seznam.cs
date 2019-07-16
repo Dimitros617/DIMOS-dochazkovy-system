@@ -16,6 +16,10 @@ namespace Docházka
         Main main;
         public TableLayoutPanel tabulka;
 
+        public Karta karta1 = null;
+        public Karta karta2 = null;
+        public Karta karta3 = null;
+
         public Seznam(Main main)
         {
             InitializeComponent();
@@ -114,7 +118,7 @@ namespace Docházka
         private void tisk_Click(object sender, EventArgs e)
         {
             int index = ((Button)sender).TabIndex;
-
+            new Vyber_karet(main, this, index).ShowDialog();
 
 
             //TODO ------------------------------------------------------------------------------ TODO

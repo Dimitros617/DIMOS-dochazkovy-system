@@ -147,7 +147,8 @@ namespace Docházka
 
                 karta.pridatOsobu(index);
                 main.Osoby[index].karty.Add(main.poleKaret.IndexOf(karta));
-                main.Osoby[index].dochazka.Add(new List<string>());
+                main.Osoby[index].dochazka.Add(new List<string>(31));
+                for (int i = 0; i < 32; i++) main.Osoby[index].dochazka[main.Osoby[index].dochazka.Count-1].Add(null);
                 ((Button)sender).Text = "Odebrat";
                 ((Button)sender).BackColor = red;
 

@@ -74,7 +74,7 @@
             this.den.Font = new System.Drawing.Font("Century Gothic", 24F);
             this.den.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
             this.den.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.den.Location = new System.Drawing.Point(725, 231);
+            this.den.Location = new System.Drawing.Point(655, 214);
             this.den.Margin = new System.Windows.Forms.Padding(0);
             this.den.Name = "den";
             this.den.Size = new System.Drawing.Size(132, 39);
@@ -89,12 +89,12 @@
             this.datum.Font = new System.Drawing.Font("Century Gothic", 24F);
             this.datum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
             this.datum.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.datum.Location = new System.Drawing.Point(713, 192);
+            this.datum.Location = new System.Drawing.Point(655, 178);
             this.datum.Margin = new System.Windows.Forms.Padding(0);
             this.datum.Name = "datum";
-            this.datum.Size = new System.Drawing.Size(144, 39);
+            this.datum.Size = new System.Drawing.Size(203, 39);
             this.datum.TabIndex = 12;
-            this.datum.Text = "1.Ledna";
+            this.datum.Text = "1.Července";
             this.datum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cas
@@ -104,7 +104,7 @@
             this.cas.Font = new System.Drawing.Font("Century Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
             this.cas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cas.Location = new System.Drawing.Point(601, 79);
+            this.cas.Location = new System.Drawing.Point(592, 65);
             this.cas.Margin = new System.Windows.Forms.Padding(0);
             this.cas.Name = "cas";
             this.cas.Size = new System.Drawing.Size(287, 115);
