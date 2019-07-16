@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -22,6 +23,9 @@ namespace Docházka
 
         public String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         public Random random;
+
+        string pathSave = @"Save\\Data.txt";
+        string pathZaloha = @"Save\\DataZaloha.txt";
 
         public Main()
         {
@@ -88,10 +92,12 @@ namespace Docházka
 
                 jmeno.Text = "";
             }
-            
+
+            LoadData();
+
             // random naplnění
-            for (int i = 0; i < 5; i++)
-                Osoby.Add(new Osoba() {jmeno = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())), prijmeni = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())) });
+            //for (int i = 0; i < 5; i++)
+            //    Osoby.Add(new Osoba() {jmeno = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())), prijmeni = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())) });
 
             timer.Start();
         }
@@ -101,9 +107,187 @@ namespace Docházka
 
 
 
+
+            try
+            {
+
+                if (File.Exists(pathSave))
+                {
+                    if (File.Exists(pathZaloha))
+                    {
+                        File.Delete(pathZaloha);
+                        File.Move(pathSave, pathZaloha);
+                        File.Delete(pathSave);
+                    }
+                    else
+                    {
+                        File.Move(pathSave, pathZaloha);
+                        File.Delete(pathSave);
+                    }
+                }
+
+
+                using (StreamWriter sr = File.AppendText(pathSave))
+                {
+
+                    //-- Zapisování všech osob
+                    
+
+                    foreach (Osoba osoba in Osoby)
+                    {
+                        sr.WriteLine("OOO");
+                        sr.WriteLine(osoba.jmeno);
+                        sr.WriteLine(osoba.prijmeni);
+                        sr.WriteLine(osoba.osobnicislo);
+                        int pocet = osoba.osobniTabulka.HashList.Count;
+
+                        sr.WriteLine(osoba.kartyToString());
+
+                        for (int i = 0; i < osoba.karty.Count; i++)
+                        {
+                            sr.WriteLine(osoba.getDochazkaLine(i));
+                        }
+
+                        sr.WriteLine(pocet);
+                        for (int i = 0; i < pocet; i++)
+                        {
+                            sr.WriteLine(osoba.osobniTabulka.getLine(i));
+                        }
+
+                    }
+                    //--Zapisování info o kartě
+
+
+                    foreach (Karta karta in poleKaret)
+                    {
+                        sr.WriteLine("KKK");
+                        sr.WriteLine(karta.nazev);
+                        sr.WriteLine(karta.getColor());
+                        sr.WriteLine(karta.mesic);
+                        sr.WriteLine(karta.rok);
+                        sr.WriteLine(karta.Finally);
+                        sr.WriteLine(karta.getListOsob());
+                        
+                    }
+
+
+                    sr.Close();
+                }
+
+            }
+
+            catch 
+            {
+                MessageBox.Show("Nastala chyba při ukládání dat, informujte administrátora", "CHYBA",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        public void LoadData() {
+
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(pathSave))
+                {
+
+                    String line = sr.ReadLine();
+
+                    while (line.Equals("OOO")) {
+
+                        String jmeno = sr.ReadLine().Trim();
+                        String prijmeni = sr.ReadLine().Trim();
+                        String osobnicislo = sr.ReadLine().Trim();
+
+                        String h = sr.ReadLine().Trim();
+                        
+
+                        //if (h.Equals(""))
+                        //{
+                        //    kartyy = new List<int>();
+                        //}
+                        //else
+                        //{
+                        //    String c = h.Trim().Remove(h.Length - 1);
+                        //    String[] xx = c.Split('_');
+
+                        //    kartyy = StringArrayToList(xx);
+                        //}
+
+
+                        List<int> kartyy = h.Equals("") ? new List<int>() : h.Trim().Remove(h.Length - 1).Split('_').Select(Int32.Parse).ToList();
+                        //List<int> kartyy = sr.ReadLine().Trim().Split('_').Select(Int32.Parse).ToList();
+
+                        List<String> dochazky = new List<string>();
+                            for (int i = 0; i < kartyy.Count; i++)
+                            {
+                            String s = sr.ReadLine();
+                            dochazky.Add(s.Trim().Remove(s.Length - 1));
+                            }
+
+                        Osoba O = new Osoba(kartyy, dochazky, jmeno, prijmeni, osobnicislo);
+                        Osoby.Add(O);
+
+                        int pocet = Int32.Parse(sr.ReadLine().Trim());
+                        for (int i = 0; i < pocet; i++)
+                        {
+                                String[] linka = sr.ReadLine().Trim().Split('_');
+                                String hash = linka[0];
+                                String hodina = linka[1];
+                                String a = linka[2];
+                                String b = linka[3];
+                                String c = linka[4];
+                                String d = linka[5];
+
+                                O.osobniTabulka.addLine(hash, hodina, a, b, c, d);
+                        }
+
+                        line = sr.ReadLine();
+
+                    }
+
+                    while (line.Equals("KKK")) {
+
+                        String nazev = sr.ReadLine();
+                        String barva = sr.ReadLine();
+                        String mesic = sr.ReadLine();
+                        String rok = sr.ReadLine();
+                        String finnaly = sr.ReadLine();
+                        String listOsob = sr.ReadLine();
+
+                        poleKaret.Add(new Karta(this, listOsob, finnaly, rok, mesic, barva, nazev));
+
+                        line = sr.ReadLine();
+                        if (line == null)
+                            break;
+                    }
+
+                }
+            }
+           catch 
+            {
+                MessageBox.Show("Nastala chyba při načítání dat, informujte administrátora", "CHYBA",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
 
+        public List<int> StringArrayToList(String[] arr) {
+
+            List<int> l = new List<int>();
+
+
+            foreach (String s in arr)
+            {
+                l.Add(Int32.Parse(s));
+            }
+
+            return l;
+        }
 
         /**
          * Debug metoda na naplnění náhodnýma lidma
@@ -191,6 +375,11 @@ namespace Docházka
         {
             cas.Text = String.Format("{0:00}", DateTime.Now.Hour) + ":" + String.Format("{0:00}", DateTime.Now.Minute);
 
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Save();
         }
     }
 }

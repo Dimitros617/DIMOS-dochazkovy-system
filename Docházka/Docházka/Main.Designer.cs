@@ -266,6 +266,7 @@
             this.MinimumSize = new System.Drawing.Size(916, 500);
             this.Name = "Main";
             this.Text = "DIMOS | Docházka - Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

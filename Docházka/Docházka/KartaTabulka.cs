@@ -262,7 +262,7 @@ namespace Docházka
                 TextBox t = new TextBox()
                 {
                     BackColor = day > 5 || day == 0 ? Color.Yellow : BackColor,
-                    Text = radek.Count != (karta.getPocetDnuVMesici() * 2) ? "" : radek[j - 3],
+                    Text = radek.Count != (karta.getPocetDnuVMesici() * 2) ? "" : radek[j - 3], //POZOR UPRAVA ----------------------- -1
                     BorderStyle = System.Windows.Forms.BorderStyle.None,
                     TextAlign = HorizontalAlignment.Center,
                     TabIndex = karta.getPocetDnuVMesici() * posledniRadek + j,

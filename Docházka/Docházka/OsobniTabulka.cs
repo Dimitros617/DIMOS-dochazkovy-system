@@ -21,6 +21,14 @@ namespace Docházka
 
         }
 
+        public string getLine(int i) {
+
+            return HashList[i] + "_" + Tabulka[i][0] + "_" + Tabulka[i][1] + "_" + Tabulka[i][2] + "_" + Tabulka[i][3] + "_" + Tabulka[i][4];
+
+        }
+
+
+
         /**
          * Redirect metoda na setLine()
          **/
