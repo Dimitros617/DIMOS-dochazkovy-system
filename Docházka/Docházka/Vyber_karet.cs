@@ -20,6 +20,7 @@ namespace Docházka
         Seznam seznam;
         int index;
         public String pracovnik = "Mgr. Hana Matuštíková";
+        public String instituce = "Základní škola Obrnice, okres Most, příspěvková organizace";
 
         public Vyber_karet(Main m, Seznam s, int i)
         {
@@ -27,11 +28,13 @@ namespace Docházka
             seznam = s;
             index = i;
             main = m;
-            setCombobox();
+            setBox();
 
         }
 
-        private void setCombobox() {
+        private void setBox() {
+
+            checkBox1.Checked = seznam.zavrit;
 
             List<int> kartyOsoby = main.Osoby[index].karty;
 
@@ -41,10 +44,45 @@ namespace Docházka
                 comboBox2.Items.Add(new ComboboxValue(kartyOsoby[i], main.poleKaret[kartyOsoby[i]].nazev + " - " + main.poleKaret[kartyOsoby[i]].mesic));
                 comboBox3.Items.Add(new ComboboxValue(kartyOsoby[i], main.poleKaret[kartyOsoby[i]].nazev + " - " + main.poleKaret[kartyOsoby[i]].mesic));
 
+            }
 
+            //--První kombobox
+            for (int i = 0; i < comboBox1.Items.Count; i++)
+            {
+                if (comboBox1.Items[i].ToString().Equals(seznam.karta1))
+                {
+                    comboBox1.SelectedItem = comboBox1.Items[i];
+                    break;
+                }
+            }
+
+            //-- Druhý kombobox
+            if(!seznam.karta2.Equals(""))
+            for (int i = 0; i < comboBox2.Items.Count; i++)
+            {
+                if (comboBox2.Items[i].ToString().Equals(seznam.karta2))
+                {
+                    comboBox2.SelectedItem = comboBox2.Items[i];
+                    break;
+                }
+            }
+
+            //-- Třetí kombobox
+            if (!seznam.karta3.Equals(""))
+            for (int i = 0; i < comboBox3.Items.Count; i++)
+            {
+                if (comboBox3.Items[i].ToString().Equals(seznam.karta3))
+                {
+                    comboBox3.SelectedItem = comboBox3.Items[i];
+                    break;
+                }
             }
 
 
+
+            //comboBox1.SelectedItem = new ComboboxValue(kartyOsoby[kartyOsoby.Count], main.poleKaret[kartyOsoby[i]].nazev + " - " + main.poleKaret[kartyOsoby[i]].mesic);
+            //comboBox2.SelectedItem = seznam.karta2;
+            //comboBox3.SelectedItem = seznam.karta3;
 
 
         }
@@ -59,11 +97,24 @@ namespace Docházka
 
         }
 
+
+        //Metoda Vytvoří PDF se zadanými datami
         private void buttonHledat_Click(object sender, EventArgs e)
         {
+
+            //Index 1 až 3 jsou indexy 3 karet z mainu které jsou aktuálně používané
             int index1 = (ComboboxValue)comboBox1.SelectedItem == null ? -1 : ((ComboboxValue)comboBox1.SelectedItem).Id;
             int index2 = (ComboboxValue)comboBox2.SelectedItem == null ? -1 : ((ComboboxValue)comboBox2.SelectedItem).Id;
             int index3 = (ComboboxValue)comboBox3.SelectedItem == null ? -1 : ((ComboboxValue)comboBox3.SelectedItem).Id;
+
+            if (index1 == -1) {
+                MessageBox.Show("Prosím vyplňtě alespoň první políčko");
+            }
+
+            seznam.karta1 = main.poleKaret[index1].nazev + " - " + main.poleKaret[index1].mesic;
+            seznam.karta2 = index2 == -1? "" : main.poleKaret[index2].nazev + " - " + main.poleKaret[index2].mesic;
+            seznam.karta3 = index3 == -1? "" : main.poleKaret[index3].nazev + " - " + main.poleKaret[index3].mesic;
+
 
             string nazev = main.Osoby[index].jmeno + " - " +  index1 + index2 + index3 + "X" + DateTime.Now.Millisecond;
             System.IO.FileStream fs = new FileStream("Save" + "\\" + nazev + ".pdf", FileMode.Create);
@@ -92,8 +143,8 @@ namespace Docházka
 
             document.Add(new Paragraph("EVIDENCE DOCHÁZKY - " + main.poleKaret[index1].rok + "\n", Nadpis));
             document.Add(Chunk.NEWLINE);
-            document.Add(new Paragraph("Zařízení: Základní škola Obrnice, okres Most, příspěvková organizace", Normal));
-            document.Add(Chunk.NEWLINE);
+            document.Add(new Paragraph("Zařízení: " + instituce, Normal));
+            document.Add(Chunk.NEWLINE); 
             document.Add(Chunk.NEWLINE);
 
             PdfPTable radek = new PdfPTable(4);
@@ -293,11 +344,22 @@ namespace Docházka
                     writer.Close();
                     fs.Close();
 
+            seznam.zavrit = checkBox1.Checked;
+
+            if (seznam.zavrit) {
+                this.Close();
+            }
+
         }
 
         private PdfPCell getCell(string v, int alignment)
         {
             return null;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

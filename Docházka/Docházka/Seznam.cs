@@ -16,9 +16,11 @@ namespace Docházka
         Main main;
         public TableLayoutPanel tabulka;
 
-        public Karta karta1 = null;
-        public Karta karta2 = null;
-        public Karta karta3 = null;
+        public string karta1 = "";
+        public string karta2 = "";
+        public string karta3 = "";
+
+        public Boolean zavrit = false;
 
         public Seznam(Main main)
         {

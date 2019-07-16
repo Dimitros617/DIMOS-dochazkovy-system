@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonHledat = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -113,7 +114,7 @@
             this.buttonHledat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonHledat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonHledat.ForeColor = System.Drawing.Color.White;
-            this.buttonHledat.Location = new System.Drawing.Point(453, 162);
+            this.buttonHledat.Location = new System.Drawing.Point(452, 136);
             this.buttonHledat.Name = "buttonHledat";
             this.buttonHledat.Size = new System.Drawing.Size(126, 32);
             this.buttonHledat.TabIndex = 19;
@@ -122,11 +123,24 @@
             this.buttonHledat.UseVisualStyleBackColor = false;
             this.buttonHledat.Click += new System.EventHandler(this.buttonHledat_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox1.Location = new System.Drawing.Point(455, 178);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(123, 20);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "Zavřít po vytištění";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Vyber_karet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 211);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonHledat);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -154,5 +168,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonHledat;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

@@ -79,15 +79,35 @@ namespace Docházka
 
             WebClient webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
-            jmeno.Text = (webClient.DownloadString("http://svatky.adresa.info/txt").Split(';'))[1];
+            try
+            {
+                jmeno.Text = (webClient.DownloadString("http://svatky.adresa.info/txt").Split(';'))[1];
+            }
+            catch (Exception)
+            {
 
-            for (int i = 0; i < 20; i++)
+                jmeno.Text = "";
+            }
+            
+            // random naplnění
+            for (int i = 0; i < 5; i++)
                 Osoby.Add(new Osoba() {jmeno = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())), prijmeni = CultureInfo.CurrentCulture.TextInfo.ToTitleCase((RandomString(random.Next(2, 8)).ToLower())) });
 
             timer.Start();
         }
 
 
+        public void Save() {
+
+
+
+        }
+
+
+
+        /**
+         * Debug metoda na naplnění náhodnýma lidma
+         **/
         string RandomString(int length)
         {
 

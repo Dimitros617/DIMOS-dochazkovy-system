@@ -83,6 +83,8 @@ namespace Docházka
 
         public String getDecodedPocetHodin(String s)
         {
+            if (s == null)
+                return 0 + "";
 
             int i = HashList.IndexOf(s.ToUpper());
             if (i == -1)
