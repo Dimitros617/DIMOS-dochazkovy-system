@@ -41,7 +41,6 @@ namespace Docházka
             main.pathExterniZaloha = textBoxPath.Text;
             main.zalohovat = checkBoxZaloha.Checked;
             main.PDFPath = textBoxPDFPath.Text;
-
             ukoncit = false;
             Close();
         }
@@ -78,13 +77,14 @@ namespace Docházka
         private void buttonVybratZalohu_Click(object sender, EventArgs e)
         {
             String soubor = "";
+            String souborPath = main.pathSave.Replace("\\\\","\\");
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Otevřít vybranou zálohu";
             theDialog.Filter = "TXT files|*.txt";
             theDialog.InitialDirectory = @"C:\";
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
-                soubor = theDialog.FileName.ToString().Replace("\\", "\\\\");
+                soubor = theDialog.FileName.ToString();
                 try
                 {
                     using (StreamReader sr = new StreamReader(soubor))
@@ -92,17 +92,20 @@ namespace Docházka
                         String line = sr.ReadLine();
                         if (line.Equals("DIMOS"))
                         {
-                            if (File.Exists(main.pathSave))
+                            if (File.Exists(souborPath))
                             {
-                                File.Delete(main.pathSave);
-                                File.Move(soubor, main.pathSave);
+                                File.Delete(souborPath);
+                                File.Copy(soubor,souborPath);
                             }
                             else
                             {
-                                File.Move(soubor, main.pathSave);
+                                File.Copy(soubor, souborPath);
                             }
-                                
-                                
+
+                            main.LoadData();
+                            ukoncit = false;
+                            this.Close();
+                            //MessageBox.Show("Nyní prosím restarujte program");
                         }
                         else
                         {

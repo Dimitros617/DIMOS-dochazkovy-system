@@ -29,6 +29,8 @@ namespace Docházka
         public Boolean zalohovat = false;
         public String PDFPath = "";
 
+        public Boolean loadZaloha = false;
+
         public String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         public Random random;
 
@@ -116,9 +118,11 @@ namespace Docházka
         {
 
 
-            string[] files = Directory.GetFiles(pathExterniZaloha);
-
-            foreach (string file in files)
+            
+            try
+            {
+                string[] files = Directory.GetFiles(pathExterniZaloha);
+                foreach (string file in files)
             {
                 FileInfo fi = new FileInfo(file);
                 if (fi.LastAccessTime < DateTime.Now.AddMonths(-3))
@@ -133,7 +137,11 @@ namespace Docházka
                 if (fi.LastAccessTime < DateTime.Now.AddMonths(-1))
                     fi.Delete();
             }
-
+            }
+            catch
+            {
+   
+            }
         }
 
         public void Save() {
@@ -419,6 +427,7 @@ namespace Docházka
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if(!loadZaloha)
             Save();
         }
 
@@ -443,6 +452,7 @@ namespace Docházka
             Nastaveni nastaveni = new Nastaveni(this);
             this.Hide();
             nastaveni.ShowDialog();
+            labelPracovnik.Text = pracovnik;
             this.Show();
         }
     }
