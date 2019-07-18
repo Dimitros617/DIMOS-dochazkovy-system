@@ -125,6 +125,15 @@ namespace Docházka
                     fi.Delete();
             }
 
+            files = Directory.GetFiles(PDFPath);
+
+            foreach (string file in files)
+            {
+                FileInfo fi = new FileInfo(file);
+                if (fi.LastAccessTime < DateTime.Now.AddMonths(-1))
+                    fi.Delete();
+            }
+
         }
 
         public void Save() {

@@ -71,7 +71,6 @@ namespace Docházka
             dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                //textBoxPath.Text = dialog.FileName.Replace("\\","\\\\");
                 textBoxPath.Text = dialog.FileName;
             }
         }
@@ -128,7 +127,6 @@ namespace Docházka
             dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                //textBoxPath.Text = dialog.FileName.Replace("\\","\\\\");
                 textBoxPDFPath.Text = dialog.FileName;
             }
         }
