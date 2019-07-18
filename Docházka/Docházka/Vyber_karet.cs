@@ -28,6 +28,8 @@ namespace Docházka
             seznam = s;
             index = i;
             main = m;
+            pracovnik = main.pracovnik;
+            instituce = main.spolecnost;
             setBox();
 
         }

@@ -7,10 +7,25 @@
     <ProjectGuid>{6F70FF34-151A-47D2-8780-9A7E68486F71}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Docházka</RootNamespace>
-    <AssemblyName>Docházka</AssemblyName>
+    <AssemblyName>DIMOS - Docházkový systém</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DIMOS_LOGO_Transparent_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FMUtils.Screenshot, Version=1.0.668.1805, Culture=neutral, PublicKeyToken=7e686a1e3bab10bf, processorArchitecture=MSIL">
       <HintPath>..\packages\FMUtils.Screenshot.1.0.668.1805\lib\net40-Client\FMUtils.Screenshot.dll</HintPath>
@@ -40,6 +58,12 @@
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack.Core.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack.Shell.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,6 +89,12 @@
     </Compile>
     <Compile Include="Editace_osob.Designer.cs">
       <DependentUpon>Editace_osob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nastaveni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nastaveni.Designer.cs">
+      <DependentUpon>Nastaveni.cs</DependentUpon>
     </Compile>
     <Compile Include="Vyber_karet.cs">
       <SubType>Form</SubType>
@@ -111,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editace_osob.resx">
       <DependentUpon>Editace_osob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nastaveni.resx">
+      <DependentUpon>Nastaveni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vyber_karet.resx">
       <DependentUpon>Vyber_karet.cs</DependentUpon>
@@ -159,7 +192,20 @@
     <None Include="bin\Debug\Image\DIMOS_LOGO_Transparent_40_procent_Small.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DIMOS_LOGO_Transparent_Icon.ico" />
     <Content Include="Resources\context-bottom-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 a x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

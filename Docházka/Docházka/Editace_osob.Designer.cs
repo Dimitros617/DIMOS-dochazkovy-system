@@ -36,8 +36,8 @@
             this.labelPrijmeni = new System.Windows.Forms.Label();
             this.textBoxOC = new System.Windows.Forms.TextBox();
             this.labelOC = new System.Windows.Forms.Label();
-            this.labelNadpis = new System.Windows.Forms.Label();
             this.tabulka = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             this.buttonUlozit = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.labelNadpis = new System.Windows.Forms.Label();
             this.tabulka.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -110,17 +110,6 @@
             this.labelOC.TabIndex = 4;
             this.labelOC.Text = "Osobní číslo";
             // 
-            // labelNadpis
-            // 
-            this.labelNadpis.AutoSize = true;
-            this.labelNadpis.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelNadpis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
-            this.labelNadpis.Location = new System.Drawing.Point(27, 23);
-            this.labelNadpis.Name = "labelNadpis";
-            this.labelNadpis.Size = new System.Drawing.Size(297, 32);
-            this.labelNadpis.TabIndex = 6;
-            this.labelNadpis.Text = "Přidat / Upravit osobu";
-            // 
             // tabulka
             // 
             this.tabulka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -132,7 +121,7 @@
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tabulka.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tabulka.Controls.Add(this.textBox6, 0, 0);
             this.tabulka.Controls.Add(this.textBox1, 0, 0);
             this.tabulka.Controls.Add(this.textBox2, 1, 0);
@@ -148,6 +137,14 @@
             this.tabulka.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 401F));
             this.tabulka.Size = new System.Drawing.Size(463, 401);
             this.tabulka.TabIndex = 7;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(78, 3);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(69, 20);
+            this.textBox6.TabIndex = 1;
+            this.textBox6.Visible = false;
             // 
             // textBox1
             // 
@@ -258,13 +255,16 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox6
+            // labelNadpis
             // 
-            this.textBox6.Location = new System.Drawing.Point(78, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(69, 20);
-            this.textBox6.TabIndex = 1;
-            this.textBox6.Visible = false;
+            this.labelNadpis.AutoSize = true;
+            this.labelNadpis.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelNadpis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.labelNadpis.Location = new System.Drawing.Point(27, 23);
+            this.labelNadpis.Name = "labelNadpis";
+            this.labelNadpis.Size = new System.Drawing.Size(297, 32);
+            this.labelNadpis.TabIndex = 6;
+            this.labelNadpis.Text = "Přidat / Upravit osobu";
             // 
             // Editace_osob
             // 
@@ -309,7 +309,6 @@
         private System.Windows.Forms.Label labelPrijmeni;
         private System.Windows.Forms.TextBox textBoxOC;
         private System.Windows.Forms.Label labelOC;
-        private System.Windows.Forms.Label labelNadpis;
         private System.Windows.Forms.TableLayoutPanel tabulka;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonPridatRadek;
@@ -322,5 +321,6 @@
         private System.Windows.Forms.Button buttonUlozit;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label labelNadpis;
     }
 }

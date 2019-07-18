@@ -21,6 +21,13 @@ namespace Docházka
         public List<Karta> poleKaret;
         public OsobniTabulka UniversalniTabulka;
 
+        //-- Nastavení
+
+        public String pracovnik = "";
+        public String spolecnost = "";
+        public String pathExterniZaloha = "";
+        public Boolean zalohovat = false;
+
         public String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         public Random random;
 
@@ -105,9 +112,6 @@ namespace Docházka
 
         public void Save() {
 
-
-
-
             try
             {
 
@@ -129,9 +133,16 @@ namespace Docházka
 
                 using (StreamWriter sr = File.AppendText(pathSave))
                 {
+                    sr.WriteLine("DIMOS");
+
+                    sr.WriteLine(pracovnik);
+                    sr.WriteLine(spolecnost);
+                    sr.WriteLine(pathExterniZaloha);
+                    sr.WriteLine(zalohovat);
+
 
                     //-- Zapisování všech osob
-                    
+
 
                     foreach (Osoba osoba in Osoby)
                     {
@@ -174,6 +185,9 @@ namespace Docházka
                     sr.Close();
                 }
 
+                if(zalohovat && !pathExterniZaloha.Equals(""))
+                File.Copy(pathSave, pathExterniZaloha + getNowString(), true);
+
             }
 
             catch 
@@ -192,8 +206,14 @@ namespace Docházka
             {
                 using (StreamReader sr = new StreamReader(pathSave))
                 {
+                    String line = sr.ReadLine(); // Načte se první řádek slouží při načítání zálohy pro ověření správnosti souboru s daty
 
-                    String line = sr.ReadLine();
+                    pracovnik = sr.ReadLine().Trim();
+                    spolecnost = sr.ReadLine().Trim();
+                    pathExterniZaloha = sr.ReadLine().Trim();
+                    zalohovat = sr.ReadLine().Trim().Equals("True") ? true : false;
+
+                    line = sr.ReadLine();
 
                     while (line.Equals("OOO")) {
 
@@ -272,6 +292,13 @@ namespace Docházka
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+        }
+
+
+        private String getNowString() {
+
+            return DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
 
         }
 
@@ -380,6 +407,30 @@ namespace Docházka
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Save();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void label3_MouseEnter(object sender, EventArgs e)
+        {
+            label3.BackColor = System.Drawing.Color.White;
+        }
+
+        private void label3_MouseLeave(object sender, EventArgs e)
+        {
+            label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
+
+        }
+
+        private void nastaveni_Click(object sender, EventArgs e)
+        {
+            Nastaveni nastaveni = new Nastaveni(this);
+            this.Hide();
+            nastaveni.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -43,8 +43,9 @@
             this.pridat = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,6 +201,7 @@
             this.nastaveni.TabIndex = 2;
             this.nastaveni.Text = "Nastavení";
             this.nastaveni.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.nastaveni.Click += new System.EventHandler(this.nastaveni_Click);
             this.nastaveni.MouseEnter += new System.EventHandler(this.nastaveni_MouseEnter);
             this.nastaveni.MouseLeave += new System.EventHandler(this.nastaveni_MouseLeave);
             // 
@@ -209,7 +211,7 @@
             this.pridat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pridat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pridat.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.pridat.Location = new System.Drawing.Point(90, 3);
+            this.pridat.Location = new System.Drawing.Point(165, 3);
             this.pridat.Name = "pridat";
             this.pridat.Size = new System.Drawing.Size(79, 20);
             this.pridat.TabIndex = 3;
@@ -228,6 +230,27 @@
             this.label1.Size = new System.Drawing.Size(900, 26);
             this.label1.TabIndex = 1;
             // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(87, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 20);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Uložit vše";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.MouseEnter += new System.EventHandler(this.label3_MouseEnter);
+            this.label3.MouseLeave += new System.EventHandler(this.label3_MouseLeave);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Docházka.Properties.Resources.DIMOS_LOGO_Text_Transparent1;
@@ -238,16 +261,12 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // timer
-            // 
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 461);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.nastaveni);
             this.Controls.Add(this.pridat);
             this.Controls.Add(this.label1);
@@ -291,5 +310,6 @@
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Timer timer;
+        public System.Windows.Forms.Label label3;
     }
 }

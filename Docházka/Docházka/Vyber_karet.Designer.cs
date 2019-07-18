@@ -150,6 +150,8 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(628, 250);
+            this.MinimumSize = new System.Drawing.Size(628, 250);
             this.Name = "Vyber_karet";
             this.Text = "DIMOS | Výběr karet";
             this.Load += new System.EventHandler(this.Form1_Load);
