@@ -42,8 +42,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelCopiright = new System.Windows.Forms.Label();
             this.buttonUlozit = new System.Windows.Forms.Button();
-            this.textBoxVybranaZaloha = new System.Windows.Forms.TextBox();
             this.buttonVybratZalohu = new System.Windows.Forms.Button();
+            this.buttonSelectPDF = new System.Windows.Forms.Button();
+            this.textBoxPDFPath = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,7 +139,7 @@
             this.checkBoxZaloha.AutoSize = true;
             this.checkBoxZaloha.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBoxZaloha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(67)))), ((int)(((byte)(73)))));
-            this.checkBoxZaloha.Location = new System.Drawing.Point(219, 254);
+            this.checkBoxZaloha.Location = new System.Drawing.Point(220, 254);
             this.checkBoxZaloha.Name = "checkBoxZaloha";
             this.checkBoxZaloha.Size = new System.Drawing.Size(165, 19);
             this.checkBoxZaloha.TabIndex = 19;
@@ -149,7 +151,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
-            this.label1.Location = new System.Drawing.Point(91, 315);
+            this.label1.Location = new System.Drawing.Point(91, 365);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 21);
             this.label1.TabIndex = 20;
@@ -195,37 +197,65 @@
             this.buttonUlozit.UseVisualStyleBackColor = false;
             this.buttonUlozit.Click += new System.EventHandler(this.buttonUlozit_Click);
             // 
-            // textBoxVybranaZaloha
-            // 
-            this.textBoxVybranaZaloha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxVybranaZaloha.Location = new System.Drawing.Point(217, 315);
-            this.textBoxVybranaZaloha.Multiline = true;
-            this.textBoxVybranaZaloha.Name = "textBoxVybranaZaloha";
-            this.textBoxVybranaZaloha.Size = new System.Drawing.Size(253, 21);
-            this.textBoxVybranaZaloha.TabIndex = 25;
-            // 
             // buttonVybratZalohu
             // 
             this.buttonVybratZalohu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
             this.buttonVybratZalohu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonVybratZalohu.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonVybratZalohu.ForeColor = System.Drawing.Color.White;
-            this.buttonVybratZalohu.Location = new System.Drawing.Point(387, 342);
+            this.buttonVybratZalohu.Location = new System.Drawing.Point(220, 359);
             this.buttonVybratZalohu.Name = "buttonVybratZalohu";
-            this.buttonVybratZalohu.Size = new System.Drawing.Size(86, 32);
+            this.buttonVybratZalohu.Size = new System.Drawing.Size(154, 32);
             this.buttonVybratZalohu.TabIndex = 26;
             this.buttonVybratZalohu.TabStop = false;
-            this.buttonVybratZalohu.Text = "Vybrat";
+            this.buttonVybratZalohu.Text = "Vybrat zálohu";
             this.buttonVybratZalohu.UseVisualStyleBackColor = false;
             this.buttonVybratZalohu.Click += new System.EventHandler(this.buttonVybratZalohu_Click);
+            // 
+            // buttonSelectPDF
+            // 
+            this.buttonSelectPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.buttonSelectPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSelectPDF.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSelectPDF.ForeColor = System.Drawing.Color.White;
+            this.buttonSelectPDF.Location = new System.Drawing.Point(388, 321);
+            this.buttonSelectPDF.Name = "buttonSelectPDF";
+            this.buttonSelectPDF.Size = new System.Drawing.Size(86, 32);
+            this.buttonSelectPDF.TabIndex = 29;
+            this.buttonSelectPDF.TabStop = false;
+            this.buttonSelectPDF.Text = "Vybrat";
+            this.buttonSelectPDF.UseVisualStyleBackColor = false;
+            this.buttonSelectPDF.Click += new System.EventHandler(this.buttonSelectPDF_Click);
+            // 
+            // textBoxPDFPath
+            // 
+            this.textBoxPDFPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxPDFPath.Location = new System.Drawing.Point(220, 294);
+            this.textBoxPDFPath.Multiline = true;
+            this.textBoxPDFPath.Name = "textBoxPDFPath";
+            this.textBoxPDFPath.Size = new System.Drawing.Size(253, 21);
+            this.textBoxPDFPath.TabIndex = 28;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(68)))));
+            this.label2.Location = new System.Drawing.Point(94, 291);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 21);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Ukládání PDF :";
             // 
             // Nastaveni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 403);
+            this.Controls.Add(this.buttonSelectPDF);
+            this.Controls.Add(this.textBoxPDFPath);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonVybratZalohu);
-            this.Controls.Add(this.textBoxVybranaZaloha);
             this.Controls.Add(this.buttonUlozit);
             this.Controls.Add(this.labelCopiright);
             this.Controls.Add(this.pictureBox1);
@@ -269,7 +299,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelCopiright;
         private System.Windows.Forms.Button buttonUlozit;
-        private System.Windows.Forms.TextBox textBoxVybranaZaloha;
         private System.Windows.Forms.Button buttonVybratZalohu;
+        private System.Windows.Forms.Button buttonSelectPDF;
+        private System.Windows.Forms.TextBox textBoxPDFPath;
+        private System.Windows.Forms.Label label2;
     }
 }

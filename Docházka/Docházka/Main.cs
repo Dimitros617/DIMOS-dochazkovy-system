@@ -27,11 +27,12 @@ namespace Docházka
         public String spolecnost = "";
         public String pathExterniZaloha = "";
         public Boolean zalohovat = false;
+        public String PDFPath = "";
 
         public String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         public Random random;
 
-        string pathSave = @"Save\\Data.txt";
+        public string pathSave = @"Save\\Data.txt";
         string pathZaloha = @"Save\\DataZaloha.txt";
 
         public Main()
@@ -101,6 +102,8 @@ namespace Docházka
             }
 
             LoadData();
+            labelPracovnik.Text = pracovnik;
+            checkZalohy();
 
             // random naplnění
             //for (int i = 0; i < 5; i++)
@@ -109,6 +112,20 @@ namespace Docházka
             timer.Start();
         }
 
+        private void checkZalohy()
+        {
+
+
+            string[] files = Directory.GetFiles(pathExterniZaloha);
+
+            foreach (string file in files)
+            {
+                FileInfo fi = new FileInfo(file);
+                if (fi.LastAccessTime < DateTime.Now.AddMonths(-3))
+                    fi.Delete();
+            }
+
+        }
 
         public void Save() {
 
@@ -138,6 +155,7 @@ namespace Docházka
                     sr.WriteLine(pracovnik);
                     sr.WriteLine(spolecnost);
                     sr.WriteLine(pathExterniZaloha);
+                    sr.WriteLine(PDFPath);
                     sr.WriteLine(zalohovat);
 
 
@@ -185,8 +203,8 @@ namespace Docházka
                     sr.Close();
                 }
 
-                if(zalohovat && !pathExterniZaloha.Equals(""))
-                File.Copy(pathSave, pathExterniZaloha + getNowString(), true);
+                if (zalohovat && !pathExterniZaloha.Equals(""))
+                File.Copy(pathSave, pathExterniZaloha + "\\" + getNowString() + ".txt");
 
             }
 
@@ -211,6 +229,7 @@ namespace Docházka
                     pracovnik = sr.ReadLine().Trim();
                     spolecnost = sr.ReadLine().Trim();
                     pathExterniZaloha = sr.ReadLine().Trim();
+                    PDFPath = sr.ReadLine().Trim();
                     zalohovat = sr.ReadLine().Trim().Equals("True") ? true : false;
 
                     line = sr.ReadLine();
@@ -223,22 +242,7 @@ namespace Docházka
 
                         String h = sr.ReadLine().Trim();
                         
-
-                        //if (h.Equals(""))
-                        //{
-                        //    kartyy = new List<int>();
-                        //}
-                        //else
-                        //{
-                        //    String c = h.Trim().Remove(h.Length - 1);
-                        //    String[] xx = c.Split('_');
-
-                        //    kartyy = StringArrayToList(xx);
-                        //}
-
-
                         List<int> kartyy = h.Equals("") ? new List<int>() : h.Trim().Remove(h.Length - 1).Split('_').Select(Int32.Parse).ToList();
-                        //List<int> kartyy = sr.ReadLine().Trim().Split('_').Select(Int32.Parse).ToList();
 
                         List<String> dochazky = new List<string>();
                             for (int i = 0; i < kartyy.Count; i++)
@@ -298,7 +302,7 @@ namespace Docházka
 
         private String getNowString() {
 
-            return DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            return DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "  " + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second;
 
         }
 

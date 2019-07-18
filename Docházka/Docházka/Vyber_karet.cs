@@ -119,7 +119,7 @@ namespace Docházka
 
 
             string nazev = main.Osoby[index].jmeno + " - " +  index1 + index2 + index3 + "X" + DateTime.Now.Millisecond;
-            System.IO.FileStream fs = new FileStream("Save" + "\\" + nazev + ".pdf", FileMode.Create);
+            System.IO.FileStream fs = new FileStream(main.PDFPath + "\\" + nazev + ".pdf", FileMode.Create);
 
             Document document = new Document(PageSize.A4, 25, 25, 30, 30);
             PdfWriter writer = PdfWriter.GetInstance(document, fs);
@@ -347,6 +347,17 @@ namespace Docházka
                     fs.Close();
 
             seznam.zavrit = checkBox1.Checked;
+
+            //TODO dodelat tisknuti PDF
+
+
+            PdfDocument pdfdocument = new PdfDocument();
+            pdfdocument.LoadFromFile(pdfPathAndFileName);
+            pdfdocument.PrinterName = "My Printer";
+            pdfdocument.PrintDocument.PrinterSettings.Copies = 2;
+            pdfdocument.PrintDocument.Print();
+            pdfdocument.Dispose();
+
 
             if (seznam.zavrit) {
                 this.Close();

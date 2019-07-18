@@ -247,5 +247,14 @@ namespace Docházka
             table.Visible = true;
             table.ResumeLayout();
         }
+
+        private void nastaveni_Click_1(object sender, EventArgs e)
+        {
+                Nastaveni nastaveni = new Nastaveni(main);
+                this.Hide();
+                nastaveni.ShowDialog();
+                this.Show();
+
+        }
     }
 }

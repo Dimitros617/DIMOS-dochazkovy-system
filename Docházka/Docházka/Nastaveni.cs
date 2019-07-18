@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace Docházka
             textBoxPracovnik.Text = main.pracovnik;
             textBoxSpolecnost.Text = main.spolecnost;
             checkBoxZaloha.Checked = main.zalohovat;
+            textBoxPDFPath.Text = main.PDFPath;
         }
 
         private void buttonUlozit_Click(object sender, EventArgs e)
@@ -38,6 +40,7 @@ namespace Docházka
             main.spolecnost = textBoxSpolecnost.Text;
             main.pathExterniZaloha = textBoxPath.Text;
             main.zalohovat = checkBoxZaloha.Checked;
+            main.PDFPath = textBoxPDFPath.Text;
 
             ukoncit = false;
             Close();
@@ -68,7 +71,8 @@ namespace Docházka
             dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                textBoxPath.Text = dialog.FileName.Replace("\\","\\\\");
+                //textBoxPath.Text = dialog.FileName.Replace("\\","\\\\");
+                textBoxPath.Text = dialog.FileName;
             }
         }
 
@@ -82,9 +86,51 @@ namespace Docházka
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
                 soubor = theDialog.FileName.ToString().Replace("\\", "\\\\");
-                textBoxVybranaZaloha.Text = soubor;
+                try
+                {
+                    using (StreamReader sr = new StreamReader(soubor))
+                    {
+                        String line = sr.ReadLine();
+                        if (line.Equals("DIMOS"))
+                        {
+                            if (File.Exists(main.pathSave))
+                            {
+                                File.Delete(main.pathSave);
+                                File.Move(soubor, main.pathSave);
+                            }
+                            else
+                            {
+                                File.Move(soubor, main.pathSave);
+                            }
+                                
+                                
+                        }
+                        else
+                        {
+                            MessageBox.Show("Soubor, který jste vybrali není soubor se zálohovanýmy daty");
+                        }
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Nastala chyba při načítání zálohy zkusze vybrat jinou zálohu nebo kontaktujte administratora", "CHYBA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
+        }
+
+        private void buttonSelectPDF_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.InitialDirectory = "C:\\Users";
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                //textBoxPath.Text = dialog.FileName.Replace("\\","\\\\");
+                textBoxPDFPath.Text = dialog.FileName;
+            }
         }
     }
 }

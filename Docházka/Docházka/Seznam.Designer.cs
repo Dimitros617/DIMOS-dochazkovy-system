@@ -55,6 +55,7 @@
             this.nastaveni.TabIndex = 5;
             this.nastaveni.Text = "Nastavení";
             this.nastaveni.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.nastaveni.Click += new System.EventHandler(this.nastaveni_Click_1);
             this.nastaveni.MouseEnter += new System.EventHandler(this.nastaveni_MouseEnter);
             this.nastaveni.MouseLeave += new System.EventHandler(this.nastaveni_MouseLeave);
             // 
