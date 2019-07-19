@@ -177,7 +177,15 @@ namespace Docházka
 
             int index = ((ToolStripMenuItem)sender).MergeIndex;
 
-            main.poleKaret.Add(Clone(main.poleKaret[index]));
+            Karta k = Clone(main.poleKaret[index]);
+            main.poleKaret.Add(k);
+
+            foreach (int i in k.indexyOsob)
+            {
+                main.Osoby[i].dochazka.Add(new List<string>(31));
+                main.Osoby[i].karty.Add(main.poleKaret.IndexOf(k));
+            }
+
             table.Controls.Clear();
             vykreslitKarty();
 

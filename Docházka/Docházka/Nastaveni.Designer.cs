@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Nastaveni));
             this.textBoxPracovnik = new System.Windows.Forms.TextBox();
             this.labelNadpis = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@
             this.buttonSelectPDF = new System.Windows.Forms.Button();
             this.textBoxPDFPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +58,7 @@
             this.textBoxPracovnik.Name = "textBoxPracovnik";
             this.textBoxPracovnik.Size = new System.Drawing.Size(253, 21);
             this.textBoxPracovnik.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.textBoxPracovnik, "Jméno které se bude zobrazovat při tisku");
             // 
             // labelNadpis
             // 
@@ -98,6 +101,7 @@
             this.textBoxSpolecnost.Name = "textBoxSpolecnost";
             this.textBoxSpolecnost.Size = new System.Drawing.Size(253, 21);
             this.textBoxSpolecnost.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.textBoxSpolecnost, "Název společnosti, který se bude zobrazovat při tisku");
             // 
             // labelPath
             // 
@@ -118,6 +122,7 @@
             this.textBoxPath.Name = "textBoxPath";
             this.textBoxPath.Size = new System.Drawing.Size(253, 21);
             this.textBoxPath.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.textBoxPath, "Kam se mají ukládat zálohy ideálně externí úložiště");
             // 
             // buttonSelect
             // 
@@ -235,6 +240,7 @@
             this.textBoxPDFPath.Name = "textBoxPDFPath";
             this.textBoxPDFPath.Size = new System.Drawing.Size(253, 21);
             this.textBoxPDFPath.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.textBoxPDFPath, "Kam se budou ukládat PDF nutno vyplnit");
             // 
             // label2
             // 
@@ -303,5 +309,6 @@
         private System.Windows.Forms.Button buttonSelectPDF;
         private System.Windows.Forms.TextBox textBoxPDFPath;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -66,7 +66,7 @@
             this.buttonTisk.Size = new System.Drawing.Size(159, 32);
             this.buttonTisk.TabIndex = 21;
             this.buttonTisk.Text = "Vytisknout 0 karet";
-            this.toolTip.SetToolTip(this.buttonTisk, "Kliknutím přidáte novou kartu");
+            this.toolTip.SetToolTip(this.buttonTisk, "Kliknutím vytisknete tisknovou frontu");
             this.buttonTisk.UseVisualStyleBackColor = false;
             this.buttonTisk.Click += new System.EventHandler(this.buttonTisk_Click);
             // 

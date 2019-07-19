@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Vyber_karet));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -39,6 +40,7 @@
             this.buttonHledat = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // comboBox1
@@ -125,6 +127,7 @@
             this.buttonHledat.TabIndex = 19;
             this.buttonHledat.TabStop = false;
             this.buttonHledat.Text = "Vytisknout";
+            this.toolTip1.SetToolTip(this.buttonHledat, "Uložíte PDF a vytisknete hned");
             this.buttonHledat.UseVisualStyleBackColor = false;
             this.buttonHledat.Click += new System.EventHandler(this.buttonHledat_Click);
             // 
@@ -138,6 +141,7 @@
             this.checkBox1.Size = new System.Drawing.Size(124, 19);
             this.checkBox1.TabIndex = 20;
             this.checkBox1.Text = "Zavřít po potvrzení";
+            this.toolTip1.SetToolTip(this.checkBox1, "Při zaškrtnutí se po zmáčknutí tlačítek \"Uložit\" nebo \"Vytisknout\" okno zavře");
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -153,6 +157,7 @@
             this.button1.TabIndex = 21;
             this.button1.TabStop = false;
             this.button1.Text = "Uložit";
+            this.toolTip1.SetToolTip(this.button1, "Uložíte vygenerované PDF do složky definované v nastavení");
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -194,5 +199,6 @@
         private System.Windows.Forms.Button buttonHledat;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -251,7 +251,8 @@ namespace Docházka
                 table.ColumnCount - 1, posledniRadek + 1);
 
             int idKarty = main.poleKaret.IndexOf(karta);
-            int idDochazky = main.Osoby[karta.indexyOsob[i]].karty.IndexOf(idKarty);
+            int x = karta.indexyOsob[i];
+            int idDochazky = main.Osoby[x].karty.IndexOf(idKarty);
 
             List<String> radek = main.Osoby[karta.indexyOsob[i]].dochazka[idDochazky];
 
