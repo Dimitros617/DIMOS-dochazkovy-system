@@ -112,7 +112,7 @@ namespace Docházka
             int index2 = (ComboboxValue)comboBox2.SelectedItem == null ? -1 : ((ComboboxValue)comboBox2.SelectedItem).Id;
             int index3 = (ComboboxValue)comboBox3.SelectedItem == null ? -1 : ((ComboboxValue)comboBox3.SelectedItem).Id;
 
-            if (index1 == -1)
+            if (index1 != -1)
             {
 
 
@@ -357,7 +357,10 @@ namespace Docházka
                 //TODO dodelat tisknuti PDF
 
 
+                try
+                {
 
+                
                 using (PrintDialog Dialog = new PrintDialog())
                 {
                     Dialog.ShowDialog();
@@ -386,6 +389,12 @@ namespace Docházka
                     {
                         printProcess.Kill();
                     }
+                }
+                }
+                catch
+                {
+
+                    
                 }
 
             }

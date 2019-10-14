@@ -220,9 +220,19 @@ namespace Docházka
                     sr.Close();
                 }
 
+                try
+                {
+
+                
                 if (zalohovat && !pathExterniZaloha.Equals(""))
                 File.Copy(pathSave, pathExterniZaloha + "\\" + getNowString() + ".txt");
+                }
+                catch
+                {
 
+                    MessageBox.Show("Nastala chyba vytváření zálohy, zkontrolujte umístění ukládání zálohy v nastavení", "CHYBA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             catch 
