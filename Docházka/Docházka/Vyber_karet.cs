@@ -308,25 +308,25 @@ namespace Docházka
 
                 }
 
-                int odpracovanoHod1 = 0;
-                int odpracovanoHod2 = 0;
-                int odpracovanoHod3 = 0;
+                double odpracovanoHod1 = 0;
+                double odpracovanoHod2 = 0;
+                double odpracovanoHod3 = 0;
 
                 for (int i = 0; i < main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index1)].Count; i++)
                 {
-                    odpracovanoHod1 += Int32.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index1)][i]));
+                    odpracovanoHod1 += Double.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index1)][i]));
                 }
 
                 if (index2 != -1)
                     for (int i = 0; i < main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index2)].Count; i++)
                     {
-                        odpracovanoHod2 += Int32.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index2)][i]));
+                        odpracovanoHod2 += Double.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index2)][i]));
                     }
 
                 if (index3 != -1)
                     for (int i = 0; i < main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index3)].Count; i++)
                     {
-                        odpracovanoHod3 += Int32.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index3)][i]));
+                        odpracovanoHod3 += Double.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index3)][i]));
                     }
 
                 table.AddCell("");
@@ -354,7 +354,7 @@ namespace Docházka
 
                 seznam.zavrit = checkBox1.Checked;
 
-                //TODO dodelat tisknuti PDF
+              
 
 
                 try
@@ -621,25 +621,26 @@ namespace Docházka
 
                 }
 
-                int odpracovanoHod1 = 0;
-                int odpracovanoHod2 = 0;
-                int odpracovanoHod3 = 0;
+                double odpracovanoHod1 = 0;
+                double odpracovanoHod2 = 0;
+                double odpracovanoHod3 = 0;
 
                 for (int i = 0; i < main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index1)].Count; i++)
                 {
-                    odpracovanoHod1 += Int32.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index1)][i]));
+                
+                    odpracovanoHod1 += Double.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index1)][i])); 
                 }
 
                 if (index2 != -1)
                     for (int i = 0; i < main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index2)].Count; i++)
                     {
-                        odpracovanoHod2 += Int32.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index2)][i]));
+                        odpracovanoHod2 += Double.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index2)][i]));
                     }
 
                 if (index3 != -1)
                     for (int i = 0; i < main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index3)].Count; i++)
                     {
-                        odpracovanoHod3 += Int32.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index3)][i]));
+                        odpracovanoHod3 += Double.Parse(main.Osoby[index].osobniTabulka.getDecodedPocetHodin(main.Osoby[index].dochazka[main.Osoby[index].karty.IndexOf(index3)][i]));
                     }
 
                 table.AddCell("");
