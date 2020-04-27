@@ -102,7 +102,7 @@ namespace Docházka
                                 File.Copy(soubor, souborPath);
                             }
 
-                            main.LoadData();
+                            main.LoadData(main.pathSave, false);
                             ukoncit = false;
                             this.Close();
                             //MessageBox.Show("Nyní prosím restarujte program");

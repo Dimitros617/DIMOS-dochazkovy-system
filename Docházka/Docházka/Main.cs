@@ -103,7 +103,7 @@ namespace Docházka
                 jmeno.Text = "";
             }
 
-            LoadData();
+            LoadData(this.pathSave, false);
             labelPracovnik.Text = pracovnik;
             checkZalohy();
 
@@ -187,16 +187,21 @@ namespace Docházka
                         sr.WriteLine(osoba.osobnicislo);
                         int pocet = osoba.osobniTabulka.HashList.Count;
 
+                        String x = "" + osoba.kartyToString();
                         sr.WriteLine(osoba.kartyToString());
+
 
                         for (int i = 0; i < osoba.karty.Count; i++)
                         {
+                            String a = "" + osoba.getDochazkaLine(i);
                             sr.WriteLine(osoba.getDochazkaLine(i));
                         }
+
 
                         sr.WriteLine(pocet);
                         for (int i = 0; i < pocet; i++)
                         {
+                            String b = "" + osoba.osobniTabulka.getLine(i);
                             sr.WriteLine(osoba.osobniTabulka.getLine(i));
                         }
 
@@ -237,19 +242,19 @@ namespace Docházka
 
             catch 
             {
-                MessageBox.Show("Nastala chyba při ukládání dat, informujte administrátora", "CHYBA",
+                MessageBox.Show("Nastala chyba při ukládání dat, je možné, že při načtení nebudou data k dispozici", "CHYBA",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
         }
 
-        public void LoadData() {
+        public void LoadData(String dataPath, Boolean zaloha) {
 
 
             try
             {
-                using (StreamReader sr = new StreamReader(pathSave))
+                using (StreamReader sr = new StreamReader(dataPath))
                 {
                     String line = sr.ReadLine(); // Načte se první řádek slouží při načítání zálohy pro ověření správnosti souboru s daty
 
@@ -259,31 +264,36 @@ namespace Docházka
                     PDFPath = sr.ReadLine().Trim();
                     zalohovat = sr.ReadLine().Trim().Equals("True") ? true : false;
 
-                    line = sr.ReadLine();
 
-                    while (line.Equals("OOO")) {
+                    try
+                    {
+                        line = sr.ReadLine();
 
-                        String jmeno = sr.ReadLine().Trim();
-                        String prijmeni = sr.ReadLine().Trim();
-                        String osobnicislo = sr.ReadLine().Trim();
+                        while (line.Equals("OOO"))
+                        {
 
-                        String h = sr.ReadLine().Trim();
-                        
-                        List<int> kartyy = h.Equals("") ? new List<int>() : h.Trim().Remove(h.Length - 1).Split('_').Select(Int32.Parse).ToList();
+                            String jmeno = sr.ReadLine().Trim();
+                            String prijmeni = sr.ReadLine().Trim();
+                            String osobnicislo = sr.ReadLine().Trim();
 
-                        List<String> dochazky = new List<string>();
+                            String h = sr.ReadLine().Trim();
+
+                            List<int> kartyy = h.Equals("") ? new List<int>() : h.Trim().Remove(h.Length - 1).Split('_').Select(Int32.Parse).ToList();
+
+                            List<String> dochazky = new List<string>();
                             for (int i = 0; i < kartyy.Count; i++)
                             {
-                            String s = sr.ReadLine();
-                            dochazky.Add(s.Trim().Remove(s.Length - 1));
+                                String s = sr.ReadLine();
+                                dochazky.Add(s.Trim().Remove(s.Length - 1));
                             }
 
-                        Osoba O = new Osoba(kartyy, dochazky, jmeno, prijmeni, osobnicislo);
-                        Osoby.Add(O);
+                            Osoba O = new Osoba(kartyy, dochazky, jmeno, prijmeni, osobnicislo);
+                            Osoby.Add(O);
 
-                        int pocet = Int32.Parse(sr.ReadLine().Trim());
-                        for (int i = 0; i < pocet; i++)
-                        {
+
+                            int pocet = Int32.Parse(sr.ReadLine().Trim());
+                            for (int i = 0; i < pocet; i++)
+                            {
                                 String[] linka = sr.ReadLine().Trim().Split('_');
                                 String hash = linka[0];
                                 String hodina = linka[1];
@@ -293,36 +303,91 @@ namespace Docházka
                                 String d = linka[5];
 
                                 O.osobniTabulka.addLine(hash, hodina, a, b, c, d);
+                            }
+
+                            line = sr.ReadLine();
+                            if (line == null)
+                                break;
+
                         }
+                    }
+                    catch
+                    {
 
-                        line = sr.ReadLine();
-
+                        DialogResult dialogResult = MessageBox.Show("Nastala chyba při načítání osob, přejete si zkusit načíst zálohu ?", "CHYBA", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            if (!zaloha)
+                                LoadData(pathZaloha, true);
+                            else
+                                MessageBox.Show("Bohužel se nepodařilo načíst ani zálohu, kontaktujte administrátora.", "CHYBA",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            MessageBox.Show("Při dalším startu je možné, že program nebude fungovat správně, kontaktujte administrátora.", "INFO",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
 
-                    while (line.Equals("KKK")) {
+                    try
+                    {
+                        if (line != null)
+                            while (line.Equals("KKK"))
+                            {
 
-                        String nazev = sr.ReadLine();
-                        String barva = sr.ReadLine();
-                        String mesic = sr.ReadLine();
-                        String rok = sr.ReadLine();
-                        String finnaly = sr.ReadLine();
-                        String listOsob = sr.ReadLine();
+                                String nazev = sr.ReadLine();
+                                String barva = sr.ReadLine();
+                                String mesic = sr.ReadLine();
+                                String rok = sr.ReadLine();
+                                String finnaly = sr.ReadLine();
+                                String listOsob = sr.ReadLine();
 
-                        poleKaret.Add(new Karta(this, listOsob, finnaly, rok, mesic, barva, nazev));
+                                poleKaret.Add(new Karta(this, listOsob, finnaly, rok, mesic, barva, nazev));
 
-                        line = sr.ReadLine();
-                        if (line == null)
-                            break;
+                                line = sr.ReadLine();
+                                if (line == null)
+                                    break;
+                            }
+                    }
+                    catch {
+
+                        DialogResult dialogResult = MessageBox.Show("Nastala chyba při načítání karet, přejete si zkusit načíst zálohu ?", "CHYBA", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            if(!zaloha)
+                            LoadData(pathZaloha, true);
+                            else
+                                MessageBox.Show("Bohužel se nepodařilo načíst ani zálohu, kontaktujte administrátora.", "CHYBA",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            MessageBox.Show("Při dalším startu je možné, že program nebude fungovat správně, kontaktujte administrátora.", "INFO",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
 
                 }
             }
-           catch 
+            catch
             {
-                MessageBox.Show("Nastala chyba při načítání dat, informujte administrátora", "CHYBA",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
+                DialogResult dialogResult = MessageBox.Show("Nastala chyba při načítání hlavních dat, přejete si zkusit načíst zálohu ?", "CHYBA", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (!zaloha)
+                        LoadData(pathZaloha, true);
+                    else
+                        MessageBox.Show("Bohužel se nepodařilo načíst ani zálohu, kontaktujte administrátora.", "CHYBA",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    MessageBox.Show("Při dalším startu je možné, že program nebude fungovat správně, kontaktujte administrátora.", "INFO",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
 
         }
 

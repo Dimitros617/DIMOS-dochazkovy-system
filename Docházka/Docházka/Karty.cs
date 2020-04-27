@@ -184,6 +184,9 @@ namespace Docházka
             {
                 main.Osoby[i].dochazka.Add(new List<string>(31));
                 main.Osoby[i].karty.Add(main.poleKaret.IndexOf(k));
+
+                for (int j = 0; j < 32; j++)
+                    main.Osoby[i].dochazka[main.Osoby[i].dochazka.Count - 1].Add(null);
             }
 
             table.Controls.Clear();
