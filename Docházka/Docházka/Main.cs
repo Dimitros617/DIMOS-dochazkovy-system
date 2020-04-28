@@ -34,8 +34,8 @@ namespace Docházka
         public String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         public Random random;
 
-        public string pathSave = @"Save\\Data.txt";
-        string pathZaloha = @"Save\\DataZaloha.txt";
+        public string pathSave = "";
+        string pathZaloha = "";
 
         public Main()
         {
@@ -45,6 +45,14 @@ namespace Docházka
             Osoby = new List<Osoba>();
             poleKaret = new List<Karta>();
             UniversalniTabulka.Reset();
+
+            pathSave = path + "\\DIMOS\\Save\\Data.txt";
+            pathZaloha = path + "\\DIMOS\\Save\\DataZaloha.txt";
+
+            if (!Directory.Exists(path + "\\DIMOS"))
+            {
+                Directory.CreateDirectory(path + "\\DIMOS");
+            }
         }
 
         private void pridat_Click(object sender, EventArgs e)
@@ -145,6 +153,12 @@ namespace Docházka
         }
 
         public void Save() {
+
+
+            if (!Directory.Exists(path + "\\DIMOS\\Save"))
+            {
+                Directory.CreateDirectory(path + "\\DIMOS\\Save");
+            }
 
             try
             {
@@ -251,6 +265,12 @@ namespace Docházka
 
         public void LoadData(String dataPath, Boolean zaloha) {
 
+            if (!File.Exists(dataPath))
+            {
+                MessageBox.Show("Zatím nebyly žádná data uloženy.", "INFO",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             try
             {

@@ -133,10 +133,17 @@ namespace Docházka
         private void remove_Click(object sender, EventArgs e)
         {
 
-            int index = ((Button)sender).TabIndex;
+            int index = ((Button)sender).TabIndex; 
             DialogResult dialogResult = MessageBox.Show( "Opravdu si přejete odstranit osobu: " + main.Osoby[index].jmeno + " " + main.Osoby[index].prijmeni + System.Environment.NewLine + System.Environment.NewLine + "Celá tabulka se graficky obnový", "ODSTRANIT", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                for (int i = 0; i < main.Osoby[index].karty.Count; i++) {
+                    int findIndex = main.poleKaret[main.Osoby[index].karty[i]].indexyOsob.IndexOf(index) ;
+                    main.poleKaret[main.Osoby[index].karty[i]].indexyOsob.Remove(index);
+                    for (int j = findIndex; j < main.poleKaret[main.Osoby[index].karty[i]].indexyOsob.Count; j++) {
+                        main.poleKaret[main.Osoby[index].karty[i]].indexyOsob[j]--;
+                    }
+                }
                 main.Osoby.RemoveAt(index);
                 table.SuspendLayout();
                 table.Controls.Clear();
